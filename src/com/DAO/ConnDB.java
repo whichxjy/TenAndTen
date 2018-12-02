@@ -1,6 +1,6 @@
 // 数据库连接类
 
-package com.DAO;
+package com.dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
