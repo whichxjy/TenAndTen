@@ -1,19 +1,27 @@
 package com.action;
 
-//import com.dao.UserDAO;
+import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
 	private String userName;
 	private String userPassword;
 	
+	private UserDAO userDAO;
+	
 	
 	public LoginAction() {
-//		userDAO = new UserDAO();
+		userDAO = new UserDAO();
 	}
 	
 	public String execute() {
-		return ERROR;
+		// µÇÂ¼
+		if (userDAO.userLogin(userName, userPassword)) {
+			return SUCCESS;
+		}
+		else {
+			return ERROR;
+		}
 	}
 	
 	public String getUserName() {

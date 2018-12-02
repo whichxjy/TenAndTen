@@ -42,4 +42,25 @@ public class UserDAO {
 		return true;
 	}
 	
+	// 判断数据库中是否存在匹配用户名及密码的用户
+	// 如果有匹配的用户，则登录成功
+	public boolean userLogin(String userName, String userPassword) {
+		ResultSet matchUsers = connDB.executeQuery(
+			  "SELECT * "
+			+ "FROM users "
+			+ "WHERE user_name='" + userName + "' "
+			+ "AND user_password='" + userPassword + "'"
+		);
+		try {
+			if (matchUsers.next()) {
+				// 有匹配的用户
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 }

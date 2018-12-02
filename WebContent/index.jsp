@@ -4,10 +4,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Basic Struts 2 Application - Welcome</title>
+        <title>Login</title>
     </head>
-    <body>
-        <h1>Welcome To Struts 2!</h1>
-        <p><a href="<s:url action='hello'/>">Hello World</a></p>
-    </body>
+	<body>
+	   <form action="login" method="post">
+	      User:<br/><input type="text" name="userName"/><br/>
+	      Password:<br/><input type="password" name="userPassword"/><br/>
+	      <input type="submit" value="Login"/>		
+	   </form>
+	   
+	   <form action="register" method="post">
+	      User:<br/><input type="text" name="userName"/><br/>
+	      Password:<br/><input type="password" name="userPassword"/><br/>
+	      <input type="submit" value="Register"/>		
+	   </form>
+	</body>
 </html>

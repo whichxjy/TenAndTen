@@ -10,8 +10,13 @@
             <result>/index.jsp</result>
         </action>
 		
-        <action name="hello" class="hello.HelloWorldAction" method="execute">
-            <result name="success">/HelloWorld.jsp</result>
+        <action name="login" class="com.action.LoginAction" method="execute">
+            <result name="success">/login_success.jsp</result>
+            <result name="error">/login_error.jsp</result>
+        </action>
+        <action name="register" class="com.action.RegisterAction" method="execute">
+            <result name="success">/register_success.jsp</result>
+            <result name="error">/register_error.jsp</result>
         </action>
     </package>
 </struts>

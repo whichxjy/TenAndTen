@@ -20,7 +20,7 @@ public class ConnDB {
 		try {
 			// 加载属性文件
 			Properties props = new Properties();
-			String propsFilePath = "/com/db_mysql.properties";
+			String propsFilePath = "F:/db_mysql.properties";
 			props.load(new FileInputStream(propsFilePath));
 			
 			// 加载属性
@@ -28,6 +28,8 @@ public class ConnDB {
 			url = props.getProperty("url");
 			user = props.getProperty("user");
 			password = props.getProperty("password");
+			
+			System.out.println(driver);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,6 +41,7 @@ public class ConnDB {
 		conn = null;
 		try {
 			// 加载驱动
+			System.out.println(driver);
 			Class.forName(driver);
 			
 			// 获取数据库连接
