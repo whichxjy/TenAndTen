@@ -8,5 +8,8 @@
     </head>
 	<body>
 		Login Success!
+		用户： ${sessionScope.user} <br>
+		${requestScope.tip}
+		
 	</body>
 </html>
