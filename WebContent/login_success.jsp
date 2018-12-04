@@ -11,5 +11,9 @@
 		用户： ${sessionScope.user} <br>
 		${requestScope.tip}
 		
+		<s:iterator value="questions" var='question'>
+			question: <s:property value="question"/>
+		</s:iterator>
+		
 	</body>
 </html>

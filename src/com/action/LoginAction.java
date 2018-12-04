@@ -8,6 +8,8 @@ public class LoginAction extends ActionSupport {
 	private String userName;
 	private String userPassword;
 	
+	private String[] questions;
+	
 	// 登录提示
 	private String tip;
 	
@@ -24,6 +26,13 @@ public class LoginAction extends ActionSupport {
 			// 设置 HttpSession 实例
 			ActionContext.getContext().getSession().put("user", getUserName());
 			setTip("登录成功！");
+			
+			String[] q = {"Q1", "Q2", "Q3", "Q4"};
+			
+//			String[] q = new String[10];
+			
+			setQuestions(q);
+			
 			return SUCCESS;
 		}
 		else {
@@ -52,6 +61,14 @@ public class LoginAction extends ActionSupport {
 
 	public void setTip(String tip) {
 		this.tip = tip;
+	}
+
+	public String[] getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(String[] questions) {
+		this.questions = questions;
 	}
 
 
