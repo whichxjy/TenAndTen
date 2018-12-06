@@ -1,19 +1,19 @@
 package com.pojo;
 
-public class User {
+public class Manager {
 	private String name;
 	private String password;
 	
-	public User() {
+	public Manager() {
 		setName(null);
 		setPassword(null);
 	}
 	
-	public User(String userName, String userPassword) {
-		name = userName;
-		password = userPassword;
+	public Manager(String userName, String userPassword) {
+		setName(userName);
+		setPassword(userPassword);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -21,17 +21,12 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
-
-	
 }

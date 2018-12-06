@@ -7,9 +7,8 @@
         <title>Home Page</title>
     </head>
 	<body>
-			Login Success!
-			用户： ${sessionScope.username} <br>
-			${requestScope.tip}
+			Login Success! <br/>
+			<s:property value="tip"/>
 		<form action="startExam" method="post">
 	   		<input type="submit" value="开始考试"/>		
 		</form>

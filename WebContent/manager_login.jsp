@@ -4,16 +4,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Manager Login</title>
     </head>
 	<body>
-	   <form action="userLogin" method="post">
-	      User:<br/><input type="text" name="user.name"/><br/>
-	      Password:<br/><input type="password" name="user.password"/><br/>
+		<h1>管理员登录</h1>
+	   <form action="managerLogin" method="post">
+	      	用户名<br/><input type="text" name="manager.name"/><br/>
+	      	密码：<br/><input type="password" name="manager.password"/><br/>
 	      <input type="submit" value="Login"/>		
 	   </form>
-	   
-		<a href="register.jsp">注册</a> <br/>
-		<a href="manager_login.jsp">管理员登录</a>
 	</body>
 </html>

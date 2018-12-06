@@ -16,13 +16,19 @@
             <result name="error">/register_error.jsp</result>
         </action>
         
-        <!-- 登录 -->
-        <action name="login" class="com.action.LoginAction" method="execute">
-            <result name="success">/home_page.jsp</result>
+        <!-- 用户登录 -->
+        <action name="userLogin" class="com.action.UserLoginAction" method="execute">
+            <result name="success">/user_home_page.jsp</result>
             <result name="error">/login_error.jsp</result>
         </action>
         
-        <!-- 开始考试、 -->
+        <!-- 管理员登录 -->
+        <action name="managerLogin" class="com.action.ManagerLoginAction" method="execute">
+            <result name="success">/manager_home_page.jsp</result>
+            <result name="error">/login_error.jsp</result>
+        </action> 
+        
+        <!-- 开始考试 -->
         <action name="startExam" class="com.action.StartExamAction" method="execute">
             <result name="success">/start_exam.jsp</result>
             <result name="error">/error.jsp</result>

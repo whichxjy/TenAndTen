@@ -14,6 +14,8 @@ public class UserDAO {
 	
 	// 添加用户
 	public boolean addUser(String userName, String userPassword) {
+		// 验证
+		
 		// 密码不能小于8位
 		if (userPassword.length() < 8)
 			return false;

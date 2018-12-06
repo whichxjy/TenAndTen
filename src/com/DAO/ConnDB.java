@@ -13,8 +13,8 @@ public class ConnDB {
 	
 	private String driver; // 数据库驱动
 	private String url; // 连接 URL
-	private String user; // 用户名
-	private String password; // 密码
+	private String user; // 数据库用户名
+	private String password; // 数据库密码
 	
 	public ConnDB() {
 		try {
