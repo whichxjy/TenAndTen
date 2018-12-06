@@ -4,12 +4,12 @@ import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
 
-public class RegisterAction extends ActionSupport {
+public class UserRegisterAction extends ActionSupport {
 	private User user;
 	
 	private UserDAO userDAO;
 	
-	public RegisterAction() {
+	public UserRegisterAction() {
 		userDAO = new UserDAO();
 	}
 	

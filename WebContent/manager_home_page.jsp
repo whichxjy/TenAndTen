@@ -10,5 +10,9 @@
 			Login Success! <br/>
 			<s:property value="tip"/>
 			
+			<a href="add_question.jsp">
+				<input type="submit" value="进入添加题目界面"/>   
+			</a>
+					
 	</body>
 </html>

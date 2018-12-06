@@ -7,7 +7,7 @@
         <title>Register</title>
     </head>
 	<body>
-		<form action="register" method="post">
+		<form action="userRegister" method="post">
 	      User:<br/><input type="text" name="user.name"/><br/>
 	      Password:<br/><input type="password" name="user.password"/><br/>
 	      <input type="submit" value="注册"/>	

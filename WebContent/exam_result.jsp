@@ -9,9 +9,9 @@
 	<body>
 		成绩：<s:property value="score"/><br/>
 		正确答案:：<br/>
-		<s:iterator value="right_answers" var='right_answer'  status="status">
-				question<s:property value="status.count"/>:<br/>
-				<s:property value="right_answer"/><br/>
+		<s:iterator value="rightAnswers" var='rightAnswer' status="status">
+				question<s:property value="#status.count"/>:<br/>
+				<s:property value="rightAnswer"/><br/>
 		</s:iterator>
 		
 	</body>

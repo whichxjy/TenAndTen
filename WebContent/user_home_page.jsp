@@ -7,7 +7,7 @@
         <title>Home Page</title>
     </head>
 	<body>
-			Login Success! <br/>
+			Login Success!
 			<s:property value="tip"/>
 		<form action="startExam" method="post">
 	   		<input type="submit" value="开始考试"/>		

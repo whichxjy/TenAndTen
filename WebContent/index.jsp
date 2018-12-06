@@ -7,13 +7,14 @@
         <title>Login</title>
     </head>
 	<body>
-	   <form action="userLogin" method="post">
-	      User:<br/><input type="text" name="user.name"/><br/>
-	      Password:<br/><input type="password" name="user.password"/><br/>
-	      <input type="submit" value="Login"/>		
-	   </form>
+		<h1>Ten &#38; Ten</h1>
+		<form action="userLogin" method="post">
+	    	User:<br/><input type="text" name="user.name"/><br/>
+	    	Password:<br/><input type="password" name="user.password"/><br/>
+	    	<input type="submit" value="Login"/>		
+	    </form>
 	   
-		<a href="register.jsp">注册</a> <br/>
-		<a href="manager_login.jsp">管理员登录</a>
+	   <a href="user_register.jsp">用户注册</a>
+	   <a href="manager_login.jsp">管理员登录</a>
 	</body>
 </html>
