@@ -18,5 +18,11 @@
             <result name="success">/register_success.jsp</result>
             <result name="error">/register_error.jsp</result>
         </action>
+        
+        <!-- test -->
+        <action name="submitAnswer" class="com.action.LoginAction" method="examResult">
+            <result name="success">/exam_result.jsp</result>
+            <result name="error">/index.jsp</result>
+        </action>
     </package>
 </struts>

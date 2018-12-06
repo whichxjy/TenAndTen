@@ -11,9 +11,15 @@
 		用户： ${sessionScope.user} <br>
 		${requestScope.tip}
 		
-		<s:iterator value="questions" var='question'>
-			question: <s:property value="question"/>
-		</s:iterator>
+		<form action="submitAnswer" method="post">
+			<s:iterator value="questions" var='question'  status="status">
+				question<s:property value="status.count"/>: <s:property value="question"/><br/>
+				<input type="text" name="answers[${status.index}]"/><br/>
+			</s:iterator>
+			
+			<input type="submit" value="提交答案"/>	
+		</form>
+
 		
 	</body>
 </html>
