@@ -4,13 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LoginSuccess</title>
+        <title>Start Exam</title>
     </head>
 	<body>
-		Login Success!
-		用户： ${sessionScope.user} <br>
-		${requestScope.tip}
-		
+	
 		<form action="submitAnswer" method="post">
 			<s:iterator value="questions" var='question'  status="status">
 				question<s:property value="status.count"/>: <s:property value="question"/><br/>

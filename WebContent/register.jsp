@@ -4,15 +4,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Register</title>
     </head>
 	<body>
-	   <form action="login" method="post">
+		<form action="register" method="post">
 	      User:<br/><input type="text" name="user.name"/><br/>
 	      Password:<br/><input type="password" name="user.password"/><br/>
-	      <input type="submit" value="Login"/>		
+	      <input type="submit" value="注册"/>	
 	   </form>
-	   
-		<a href="register.jsp">注册</a>
 	</body>
 </html>

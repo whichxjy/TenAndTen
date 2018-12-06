@@ -2,10 +2,10 @@ package com.action;
 
 import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
+import com.pojo.User;
 
 public class RegisterAction extends ActionSupport {
-	private String userName;
-	private String userPassword;
+	private User user;
 	
 	private UserDAO userDAO;
 	
@@ -15,27 +15,20 @@ public class RegisterAction extends ActionSupport {
 	
 	public String execute() {
 		// ×¢²áÓÃ»§
-		if (userDAO.addUser(userName, userPassword)) {
+		if (userDAO.addUser(user.getName(), user.getPassword())) {
 			return SUCCESS;
 		}
 		else {
 			return ERROR;
 		}
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getUserPassword() {
-		return userPassword;
-	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
 }
