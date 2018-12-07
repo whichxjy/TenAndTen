@@ -15,7 +15,7 @@ public class QuestionDAO {
 	// Ìí¼ÓÌâÄ¿
 	public boolean addQuestion(String question, String right_answer) {
 		int updateNum = connDB.executeUpdate(
-			"INSERT INTO questions (question, right_answer)"
+			  "INSERT INTO questions (question, right_answer)"
 			+ "values('" + question + "', '" + right_answer + "')"
 		);
 		if (updateNum > 0)
