@@ -7,15 +7,18 @@
         <title>Start Exam</title>
     </head>
 	<body>
-	
+		名字：<s:property value="#session.user.name"/> <br/>
+		
 		<form action="submitAnswers" method="post">
 			<s:iterator value="questions" var='question'  status="status">
 				question<s:property value="#status.count"/>: <s:property value="question"/><br/>
-				<input type="text" name="answers[${status.index}]"/><br/>
+				<input type="text" name="userAnswers[${status.index}]"/><br/>
 			</s:iterator>
 			
-			<input type="submit" value="提交答案"/>	
+			<input type="submit" value="提交答案"/>
 		</form>
+		
+		<a href="user_home_page.jsp">返回主页</a>
 
 		
 	</body>

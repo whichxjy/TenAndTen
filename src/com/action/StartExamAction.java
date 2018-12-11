@@ -6,8 +6,7 @@ import com.dao.QuestionDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class StartExamAction extends ActionSupport {
-	private List<String> questions; // 要显示的问题
-	
+	private List<String> questions; // 要显示的问题	
 	private QuestionDAO questionDAO;
 	
 	public StartExamAction() {
@@ -15,7 +14,7 @@ public class StartExamAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		try {
+		try {						
 			// 设置显示的问题
 			setQuestions(questionDAO.getAllQuestions());
 			return SUCCESS;
@@ -32,6 +31,5 @@ public class StartExamAction extends ActionSupport {
 	public void setQuestions(List<String> questions) {
 		this.questions = questions;
 	}
-	
 	
 }

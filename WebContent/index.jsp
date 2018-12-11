@@ -8,11 +8,11 @@
     </head>
 	<body>
 		<h1>Ten &#38; Ten</h1>
-		<form action="userLogin" method="post">
-	    	User:<br/><input type="text" name="user.name"/><br/>
-	    	Password:<br/><input type="password" name="user.password"/><br/>
+		<s:form action="userLogin" method="post">
+	    	用户名：<br/><input type="text" name="user.name"/><br/>
+	    	密码：<br/><input type="password" name="user.password"/><br/>
 	    	<input type="submit" value="Login"/>		
-	    </form>
+	    </s:form>
 	   
 	   <a href="user_register.jsp">用户注册</a>
 	   <a href="manager_login.jsp">管理员登录</a>

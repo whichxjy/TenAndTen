@@ -1,15 +1,15 @@
 package com.action;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
 
 public class UserLoginAction extends ActionSupport {
 	private User user;	
-	private String tip; // 登录提示
 	
 	private UserDAO userDAO;
-
 	
 	public UserLoginAction() {
 		userDAO = new UserDAO();
@@ -17,10 +17,10 @@ public class UserLoginAction extends ActionSupport {
 	
 	public String execute() {
 		// 登录
+		System.out.println(user.getName() + " " + user.getPassword());
+		
 		if (userDAO.userLogin(user.getName(), user.getPassword())) {
-
-			setTip("用户 " + user.getName() + "，登录成功！");
-
+			ServletActionContext.getRequest().getSession().setAttribute("user", user);			
 			return SUCCESS;
 		}
 		else {
@@ -35,14 +35,5 @@ public class UserLoginAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public String getTip() {
-		return tip;
-	}
-
-	public void setTip(String tip) {
-		this.tip = tip;
-	}
-
 
 }

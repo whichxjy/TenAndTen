@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GradeDB {
+public class GradeDAO {
 	private ConnDB connDB;
 	
-	public GradeDB() {
+	public GradeDAO() {
 		connDB = new ConnDB();
 	}
 	
@@ -17,11 +17,11 @@ public class GradeDB {
 		int updateNum = connDB.executeUpdate(
 				  "INSERT INTO grades (user_name, score)"
 				+ "values('" + userName + "', " + score + ")"
-			);
-			if (updateNum > 0)
-				return true;
-			else
-				return false;
+		);
+		if (updateNum > 0)
+			return true;
+		else
+			return false;
 	}
 	
 	// 更新成绩
@@ -30,11 +30,11 @@ public class GradeDB {
 				  "UPDATE grades "
 				+ "SET score=" + score + " "
 				+ "WHERE user_name='" + userName + "'"
-			);
-			if (updateNum > 0)
-				return true;
-			else
-				return false;
+		);
+		if (updateNum > 0)
+			return true;
+		else
+			return false;
 	}
 	
 	// 获取全部成绩

@@ -7,8 +7,8 @@
         <title>Home Page</title>
     </head>
 	<body>
-			Login Success!
-			<s:property value="tip"/>
+		名字：<s:property value="#session.user.name"/> <br/>
+		Login Success! <br/>
 		<form action="startExam" method="post">
 	   		<input type="submit" value="开始考试"/>		
 		</form>
