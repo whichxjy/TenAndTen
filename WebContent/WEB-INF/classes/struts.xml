@@ -46,5 +46,11 @@
             <result name="error">/error.jsp</result>
         </action>
         
+		<!-- 查询成绩 -->
+        <action name="queryGrade" class="com.action.QueryGradeAction" method="execute">
+            <result name="success">/user_grade.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
     </package>
 </struts>

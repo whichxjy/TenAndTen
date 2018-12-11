@@ -42,6 +42,7 @@ public class SubmitAnswersAction extends ActionSupport {
 		}
 		
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		// Â¼Èë³É¼¨
 		if (gradeDAO.addGrade(user.getName(), getScore()) || gradeDAO.updateGrade(user.getName(), getScore())) {
 			return SUCCESS;
 		}
