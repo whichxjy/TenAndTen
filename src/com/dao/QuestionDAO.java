@@ -3,7 +3,9 @@ package com.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuestionDAO {
 	private ConnDB connDB;
@@ -66,6 +68,29 @@ public class QuestionDAO {
 		}
 		
 		return right_answers;
+	}
+	
+	// 获取全部问题和答案
+	public Map<String, String> getAllQuestionsAndAnswers() {
+		Map<String, String> questionsAndAnswers = new HashMap<String, String>();
+		
+		ResultSet result = connDB.executeQuery(
+			  "SELECT question, right_answer "
+			+ "FROM questions"
+		);
+		
+		try {
+			while (result.next()) {
+				String question = result.getString("question");
+				String right_answer = result.getString("right_answer");
+				questionsAndAnswers.put(question, right_answer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return questionsAndAnswers;
 	}
 	
 	// 获取某个问题的答案

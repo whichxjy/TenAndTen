@@ -13,5 +13,6 @@
 	    	答案：<br/><input type="text" name="rightAnswer"/><br/>
 	    	<input type="submit" value="添加"/>		
 	    </form>
+	    <a href="manager_home_page.jsp">返回主页</a>
 	</body>
 </html>

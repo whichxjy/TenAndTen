@@ -58,6 +58,12 @@
             <result name="error">/error.jsp</result>
         </action>
         
+		<!-- 管理员查看题库 -->
+        <action name="getQuestionList" class="com.action.GetQuestionListAction" method="execute">
+            <result name="success">/question_list.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
         
     </package>
 </struts>

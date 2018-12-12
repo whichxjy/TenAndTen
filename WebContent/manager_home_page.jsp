@@ -15,6 +15,10 @@
 			<input type="submit" value="进入添加题目界面"/>   
 		</a>
 		
+		<s:form action="getQuestionList" method="post">
+			<input type="submit" value="进入题库界面"/>
+		</s:form>
+		
 		<s:form action="getExamResultTable" method="post">
 			<input type="submit" value="进入成绩表界面"/>
 		</s:form>
