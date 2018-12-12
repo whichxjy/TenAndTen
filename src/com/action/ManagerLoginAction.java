@@ -1,5 +1,7 @@
 package com.action;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.dao.ManagerDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.Manager;
@@ -18,7 +20,7 @@ public class ManagerLoginAction extends ActionSupport {
 		// 登录
 		if (managerDAO.managerLogin(manager.getName(), manager.getPassword())) {
 			setTip("管理员 " + manager.getName() + "登录成功！");
-
+			ServletActionContext.getRequest().getSession().setAttribute("manager", manager);
 			return SUCCESS;
 		}
 		else {

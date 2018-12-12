@@ -7,12 +7,17 @@
         <title>Manager Home Page</title>
     </head>
 	<body>
-			Login Success! <br/>
-			<s:property value="tip"/>
-			
-			<a href="add_question.jsp">
-				<input type="submit" value="进入添加题目界面"/>   
-			</a>
+		管理员名字：<s:property value="#session.manager.name"/> <br/>
+		Login Success! <br/>
+		<s:property value="tip"/>
+		
+		<a href="add_question.jsp">
+			<input type="submit" value="进入添加题目界面"/>   
+		</a>
+		
+		<s:form action="getExamResultTable" method="post">
+			<input type="submit" value="进入成绩表界面"/>
+		</s:form>
 					
 	</body>
 </html>

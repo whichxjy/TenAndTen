@@ -6,11 +6,11 @@ import com.dao.GradeDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
 
-public class QueryGradeAction extends ActionSupport {
+public class UserQueryGradeAction extends ActionSupport {
 	private int grade;
 	private GradeDAO gradeDAO;
 	
-	public QueryGradeAction() {
+	public UserQueryGradeAction() {
 		gradeDAO = new GradeDAO();
 	}
 

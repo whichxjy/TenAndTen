@@ -47,10 +47,17 @@
         </action>
         
 		<!-- 查询成绩 -->
-        <action name="queryGrade" class="com.action.QueryGradeAction" method="execute">
+        <action name="queryGrade" class="com.action.UserQueryGradeAction" method="execute">
             <result name="success">/user_grade.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        
+        <!-- 管理员获得成绩表 -->
+        <action name="getExamResultTable" class="com.action.GetExamResultTableAction" method="execute">
+            <result name="success">/exam_result_table.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
         
     </package>
 </struts>
