@@ -1,6 +1,7 @@
 package com.pojo;
 
 public class User {
+	private int id;
 	private String name;
 	private String password;
 	
@@ -12,6 +13,20 @@ public class User {
 	public User(String userName, String userPassword) {
 		name = userName;
 		password = userPassword;
+	}
+	
+	public User(int id, String userName, String userPassword) {
+		this.id = id;
+		name = userName;
+		password = userPassword;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -29,6 +44,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 
 
