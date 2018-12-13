@@ -11,7 +11,7 @@ public class UserQueryGradeAction extends ActionSupport {
 	private GradeDAO gradeDAO;
 	
 	public UserQueryGradeAction() {
-		gradeDAO = new GradeDAO();
+		gradeDAO = GradeDAO.getGradeDAO();
 	}
 
 	public String execute() {

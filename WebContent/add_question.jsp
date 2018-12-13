@@ -13,6 +13,6 @@
 	    	答案：<br/><input type="text" name="questionItem.rightAnswer"/><br/>
 	    	<input type="submit" value="添加"/>		
 	    </s:form>
-	    <a href="manager_home_page.jsp">返回主页</a>
+	    <a href="question_list.jsp">返回题库</a>
 	</body>
 </html>

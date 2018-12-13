@@ -8,15 +8,16 @@ import com.pojo.QuestionItem;
 
 public class GetQuestionListAction extends ActionSupport {
 	private List<QuestionItem> questionItems;
+	private int totalNumberOfQuestions;
 	private QuestionDAO questionDAO;
 	
 	public GetQuestionListAction() {
-		questionDAO = new QuestionDAO();
+		questionDAO = QuestionDAO.getQuestionDAO();
 	}
 	
 	public String execute() {
 		setQuestionItems(questionDAO.getAllQuestionItems());
-		System.out.println(questionItems.get(0).getQuestion());
+		setTotalNumberOfQuestions(questionItems.size());
 		return SUCCESS;
 	}
 
@@ -26,6 +27,14 @@ public class GetQuestionListAction extends ActionSupport {
 
 	public void setQuestionItems(List<QuestionItem> questionItems) {
 		this.questionItems = questionItems;
+	}
+
+	public int getTotalNumberOfQuestions() {
+		return totalNumberOfQuestions;
+	}
+
+	public void setTotalNumberOfQuestions(int totalNumberOfQuestions) {
+		this.totalNumberOfQuestions = totalNumberOfQuestions;
 	}
 	
 

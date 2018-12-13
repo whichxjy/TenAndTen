@@ -8,11 +8,25 @@ import java.util.List;
 import com.pojo.QuestionItem;
 
 public class QuestionDAO {
+	private static volatile QuestionDAO questionDAO;
+	
 	private ConnDB connDB;
 	
-	public QuestionDAO() {
-		connDB = new ConnDB();
+	private QuestionDAO() {
+		connDB = ConnDB.getConnDB();
+		questionDAO = null;
 	}
+	
+    public static QuestionDAO getQuestionDAO(){
+        if(questionDAO == null){
+            synchronized (QuestionDAO.class){
+                if(questionDAO == null){
+                	questionDAO = new QuestionDAO();
+                }
+            }
+        }
+        return questionDAO;
+    }  
 	
 	// ÃÌº”Ã‚ƒø
 	public boolean addQuestion(String question, String right_answer) {

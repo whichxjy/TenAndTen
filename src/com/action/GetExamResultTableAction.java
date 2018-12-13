@@ -11,7 +11,7 @@ public class GetExamResultTableAction extends ActionSupport {
 	private GradeDAO gradeDAO;
 	 
 	public GetExamResultTableAction() {
-		gradeDAO = new GradeDAO();
+		gradeDAO = GradeDAO.getGradeDAO();
 	} 
 
 	public String execute() {

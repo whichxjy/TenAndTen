@@ -6,11 +6,25 @@ import java.sql.SQLException;
 import com.dao.ConnDB;
 
 public class UserDAO {
+	private static volatile UserDAO userDAO;
+	
 	private ConnDB connDB;
 	
-	public UserDAO() {
-		connDB = new ConnDB();
+	private UserDAO() {
+		connDB = ConnDB.getConnDB();
+		userDAO = null;
 	}
+	
+	public static UserDAO getUserDAO(){
+        if(userDAO == null){
+            synchronized (UserDAO.class){
+                if(userDAO == null){
+                	userDAO = new UserDAO();
+                }
+            }
+        }
+        return userDAO;
+    }    
 	
 	// ÃÌº””√ªß
 	public boolean addUser(String userName, String userPassword) {

@@ -13,7 +13,7 @@ public class ManagerLoginAction extends ActionSupport {
 	private ManagerDAO managerDAO;
 	
 	public ManagerLoginAction() {
-		managerDAO = new ManagerDAO();
+		managerDAO = ManagerDAO.getManagerDAO();
 	}
 	
 	public String execute() {

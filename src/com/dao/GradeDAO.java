@@ -6,11 +6,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GradeDAO {
+	private static volatile GradeDAO gradeDAO;
+	
 	private ConnDB connDB;
 	
-	public GradeDAO() {
-		connDB = new ConnDB();
+	private GradeDAO() {
+		connDB = ConnDB.getConnDB();
+		gradeDAO = null;
 	}
+	
+    public static GradeDAO getGradeDAO(){
+        if(gradeDAO == null){
+            synchronized (GradeDAO.class){
+                if(gradeDAO == null){
+                	gradeDAO = new GradeDAO();
+                }
+            }
+        }
+        return gradeDAO;
+    } 
 	
 	// Ìí¼Ó³É¼¨
 	public boolean addGrade(String userName, int score) {

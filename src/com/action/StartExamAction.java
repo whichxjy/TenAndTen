@@ -10,7 +10,7 @@ public class StartExamAction extends ActionSupport {
 	private QuestionDAO questionDAO;
 	
 	public StartExamAction() {
-		questionDAO = new QuestionDAO();
+		questionDAO = QuestionDAO.getQuestionDAO();
 	}
 	
 	public String execute() {

@@ -12,7 +12,7 @@ public class UserLoginAction extends ActionSupport {
 	private UserDAO userDAO;
 	
 	public UserLoginAction() {
-		userDAO = new UserDAO();
+		userDAO = UserDAO.getUserDAO();
 	}
 	
 	public String execute() {

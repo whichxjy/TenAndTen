@@ -10,7 +10,7 @@ public class UserRegisterAction extends ActionSupport {
 	private UserDAO userDAO;
 	
 	public UserRegisterAction() {
-		userDAO = new UserDAO();
+		userDAO = UserDAO.getUserDAO();
 	}
 	
 	public String execute() {

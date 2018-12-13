@@ -4,11 +4,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ManagerDAO {
+	private static volatile ManagerDAO managerDAO;
+	
 	private ConnDB connDB;
 	
-	public ManagerDAO() {
-		connDB = new ConnDB();
+	private ManagerDAO() {
+		connDB = ConnDB.getConnDB();
+		managerDAO = null;
 	}
+	
+    public static ManagerDAO getManagerDAO(){
+        if(managerDAO == null){
+            synchronized (ManagerDAO.class){
+                if(managerDAO == null){
+                	managerDAO = new ManagerDAO();
+                }
+            }
+        }
+        return managerDAO;
+    } 
 	
 	// 判断数据库中是否存在匹配管理员及密码的用户
 	// 如果有匹配的管理员，则登录成功

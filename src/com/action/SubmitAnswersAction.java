@@ -19,8 +19,8 @@ public class SubmitAnswersAction extends ActionSupport {
 	private GradeDAO gradeDAO;
 	
 	public SubmitAnswersAction() {
-		questionDAO = new QuestionDAO();
-		gradeDAO = new GradeDAO();
+		questionDAO = QuestionDAO.getQuestionDAO();
+		gradeDAO = GradeDAO.getGradeDAO();
 		setScore(0);
 	}
 	

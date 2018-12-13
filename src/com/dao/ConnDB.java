@@ -8,6 +8,8 @@ import java.util.Properties;
 import java.sql.*;
 
 public class ConnDB {
+	private volatile static ConnDB connDB;
+	
 	private Connection conn;
 	private Statement stmt;
 	
@@ -16,8 +18,9 @@ public class ConnDB {
 	private String user; // 数据库用户名
 	private String password; // 数据库密码
 	
-	public ConnDB() {
+	private ConnDB() {
 		try {
+			connDB = null;
 			// 加载属性文件
 			Properties props = new Properties();
 			String propsFilePath = "F:/db_mysql.properties";
@@ -35,6 +38,17 @@ public class ConnDB {
 			e.printStackTrace();
 		}  
 	}
+	
+	public static ConnDB getConnDB() {  
+	    if (connDB == null) {  
+	        synchronized (ConnDB.class) {  
+		        if (connDB == null) {  
+		        	connDB = new ConnDB();  
+		        }  
+	        }  
+	    }  
+	    return connDB;  
+	}  
 	
 	// 获取数据库连接
 	private void getConnection() {
