@@ -11,7 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
 
 public class SubmitAnswersAction extends ActionSupport {
-	private List<String> questions;
 	private List<String> userAnswers; // 用户提交的答案
 	private List<String> rightAnswers; // 题库中的正确答案
 	private int score; // 考试成绩
@@ -50,14 +49,6 @@ public class SubmitAnswersAction extends ActionSupport {
 			return ERROR;
 		}
 			
-	}
-
-	public List<String> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<String> questions) {
-		this.questions = questions;
 	}
 
 	public List<String> getUserAnswers() {

@@ -4,15 +4,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Add Question</title>
     </head>
 	<body>
 		<h1>添加题目</h1>
-		<form action="addQuestion" method="post">
-	    	问题：<br/><input type="text" name="question"/><br/>
-	    	答案：<br/><input type="text" name="rightAnswer"/><br/>
+		<s:form action="addQuestion" method="post">
+	    	问题：<br/><input type="text" name="questionItem.question"/><br/>
+	    	答案：<br/><input type="text" name="questionItem.rightAnswer"/><br/>
 	    	<input type="submit" value="添加"/>		
-	    </form>
+	    </s:form>
 	    <a href="manager_home_page.jsp">返回主页</a>
 	</body>
 </html>

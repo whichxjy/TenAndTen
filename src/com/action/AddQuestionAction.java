@@ -2,10 +2,10 @@ package com.action;
 
 import com.dao.QuestionDAO;
 import com.opensymphony.xwork2.ActionSupport;
+import com.pojo.QuestionItem;
 
 public class AddQuestionAction extends ActionSupport {
-	private String question; // 需要添加的题目
-	private String rightAnswer; // 题目对应的正确答案
+	private QuestionItem questionItem;
 	
 	private QuestionDAO questionDAO;
 	
@@ -14,7 +14,7 @@ public class AddQuestionAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		if (questionDAO.addQuestion(getQuestion(), getRightAnswer())) {
+		if (questionDAO.addQuestion(questionItem.getQuestion(), questionItem.getRightAnswer())) {
 			return SUCCESS;
 		}
 		else {
@@ -22,22 +22,12 @@ public class AddQuestionAction extends ActionSupport {
 		}
 	}
 
-	public String getQuestion() {
-		return question;
+	public QuestionItem getQuestionItem() {
+		return questionItem;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQuestionItem(QuestionItem questionItem) {
+		this.questionItem = questionItem;
 	}
-
-	public String getRightAnswer() {
-		return rightAnswer;
-	}
-
-	public void setRightAnswer(String rightAnswer) {
-		this.rightAnswer = rightAnswer;
-	}
-
-
 	
 }

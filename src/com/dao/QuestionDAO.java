@@ -3,9 +3,9 @@ package com.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import com.pojo.QuestionItem;
 
 public class QuestionDAO {
 	private ConnDB connDB;
@@ -48,7 +48,7 @@ public class QuestionDAO {
 		return questions;
 	}
 	
-	// 获取全部正确问题
+	// 获取全部正确答案
 	public List<String> getAllRightAnswers() {
 		List<String> right_answers = new ArrayList<String>();
 		
@@ -70,27 +70,28 @@ public class QuestionDAO {
 		return right_answers;
 	}
 	
-	// 获取全部问题和答案
-	public Map<String, String> getAllQuestionsAndAnswers() {
-		Map<String, String> questionsAndAnswers = new HashMap<String, String>();
+	// 获取全部问题项
+	public List<QuestionItem> getAllQuestionItems() {
+		List<QuestionItem> questionItems = new ArrayList<QuestionItem>();
 		
 		ResultSet result = connDB.executeQuery(
-			  "SELECT question, right_answer "
+			  "SELECT question_id, question, right_answer "
 			+ "FROM questions"
 		);
 		
 		try {
 			while (result.next()) {
+				int question_id = result.getInt("question_id");
 				String question = result.getString("question");
 				String right_answer = result.getString("right_answer");
-				questionsAndAnswers.put(question, right_answer);
+				questionItems.add(new QuestionItem(question_id, question, right_answer));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 		
-		return questionsAndAnswers;
+		return questionItems;
 	}
 	
 	// 获取某个问题的答案

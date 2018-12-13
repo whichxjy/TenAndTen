@@ -8,10 +8,10 @@
     </head>
 	<body>
 	
-		<s:iterator value="questionsAndAnswers" status="status">
-			题号：<s:property value="#status.count"/><br/>
-			题目：<s:property value="key"/><br/>
-			答案：<s:property value="value"/><br/>
+		<s:iterator value="questionItems" var="questionItem" status="status">
+			题号：<s:property value="#questionItem.id"/><br/>
+			题目：<s:property value="#questionItem.question"/><br/>
+			答案：<s:property value="#questionItem.rightAnswer"/><br/>
 		</s:iterator>
 		
 		<a href="manager_home_page.jsp">返回主页</a>
