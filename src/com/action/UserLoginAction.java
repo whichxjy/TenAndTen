@@ -16,9 +16,7 @@ public class UserLoginAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		// µÇÂ¼
-		System.out.println(user.getName() + " " + user.getPassword());
-		
+		// µÇÂ¼		
 		if (userDAO.userLogin(user.getName(), user.getPassword())) {
 			ServletActionContext.getRequest().getSession().setAttribute("user", user);
 			return SUCCESS;

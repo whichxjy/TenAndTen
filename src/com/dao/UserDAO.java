@@ -1,27 +1,33 @@
 package com.dao;
+2222
+import java.util.List;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
-import com.dao.ConnDB;
 import com.pojo.User;
 
 public class UserDAO {
 	private static volatile UserDAO userDAO;
 	
-	private ConnDB connDB;
-	
 	private static SessionFactory factory; 
 	
 	private UserDAO() {
-		connDB = ConnDB.getConnDB();
-		userDAO = null;
+		try{
+			// 实例化配置文件，然后创建 SessionFactory
+			factory = new Configuration().configure().buildSessionFactory();
+	    }catch (Throwable ex) { 
+	    	System.err.println("Failed to create sessionFactory object." + ex);
+	        throw new ExceptionInInitializerError(ex); 
+	    }
 	}
 	
 	public static UserDAO getUserDAO(){
@@ -37,77 +43,110 @@ public class UserDAO {
 	
 	// 添加用户
 	public boolean addUser(String userName, String userPassword) {
+		// 验证
+		if (!checkUser(userName, userPassword))
+			return false;
 		
-		try{
-			factory = new Configuration().configure().buildSessionFactory();
-	    }catch (Throwable ex) { 
-	    	System.err.println("Failed to create sessionFactory object." + ex);
-	        throw new ExceptionInInitializerError(ex); 
-	    }
+		// 创建 Session
 	    Session session = factory.openSession();
-	    Transaction tx = null;    
+	    
+	    Transaction transaction = null;    
+	    
+	    boolean addUserSuccess;
 	    
 	    try{
-	         tx = session.beginTransaction();
-	         User user = new User(userName, userPassword);
-	         session.save(user); 
-	         tx.commit();
-	      }catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      }finally {
-	         session.close(); 
-	      }
-	      return true;
-//		// 验证
-//		
-//		// 密码不能小于8位
-//		if (userPassword.length() < 8)
-//			return false;
-//		
-//		// 判断用户ID是否已经存在		
-//		ResultSet sameNameUsers = connDB.executeQuery(
-//			  "SELECT * "
-//			+ "FROM users "
-//			+ "WHERE user_name='" + userName + "'"
-//		);
-//		try {
-//			if (sameNameUsers.next()) {
-//				// 若用户名已经存在，则添加失败
-//				return false;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		// 添加用户
-//		connDB.executeUpdate(
-//			  "INSERT INTO users (user_name, user_password) "
-//			+ "values('" + userName + "', '" + userPassword + "')"
-//		);
-//		
-//		return true;
+	    	// 开始事务
+	    	transaction = session.beginTransaction();
+	    	
+	    	CriteriaBuilder builder = session.getCriteriaBuilder();
+	    	CriteriaQuery<User> query = builder.createQuery(User.class);
+	    	Root<User> root = query.from(User.class);
+	    	
+	    	// 查询数据库中名字相同的用户
+	    	query.select(root).where(builder.equal(root.get("name"), userName));
+	    	Query<User> q = session.createQuery(query);
+	    	List<User> sameNameUsers = q.getResultList();
+	    	
+	    	// 若用户名重复，则添加失败
+	    	if (!sameNameUsers.isEmpty()) {
+	    		addUserSuccess = false;
+	    	}
+	    	else {
+		    	// 创建用户
+		    	User user = new User(userName, userPassword);
+		    	// 保存用户
+		        session.save(user);
+		        
+		        addUserSuccess = true;
+	    	}
+	    	// 提交事务
+	    	transaction.commit();
+
+	    } catch (HibernateException e) {
+	         if (transaction != null) {
+	        	 transaction.rollback();
+	         }
+	         e.printStackTrace();
+	         addUserSuccess = false;
+	    } finally {
+	    	session.close();
+	    }
+    	return addUserSuccess ? true : false;
+	}
+	
+	// 验证用户名和密码
+	private boolean checkUser(String userName, String userPassword) {
+		if (userName.length() < 6 || userPassword.length() < 8) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	// 判断数据库中是否存在匹配用户名及密码的用户
 	// 如果有匹配的用户，则登录成功
 	public boolean userLogin(String userName, String userPassword) {
-		ResultSet matchUsers = connDB.executeQuery(
-			  "SELECT * "
-			+ "FROM users "
-			+ "WHERE user_name='" + userName + "' "
-			+ "AND user_password='" + userPassword + "'"
-		);
-		try {
-			if (matchUsers.next()) {
-				// 有匹配的用户
-				return true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
+	    Session session = factory.openSession();
+	    Transaction transaction = null;    
+	    
+	    boolean userLoginSuccess;
+	    try{
+	    	// 开始事务
+	    	transaction = session.beginTransaction();
+	    	
+	    	CriteriaBuilder builder = session.getCriteriaBuilder();
+	    	CriteriaQuery<User> query = builder.createQuery(User.class);
+	    	Root<User> root = query.from(User.class);
+	    	
+	    	// 查询数据库中名字和密码都相同的用户
+	    	query.select(root).where(builder.and(
+	    		builder.equal(root.get("name"), userName), 
+	    		builder.equal(root.get("password"), userPassword)
+	    	)); 	
+	    	Query<User> q = session.createQuery(query);
+	    	List<User> matchUsers = q.getResultList();
+	    	
+	    	// 如果有匹配的用户，则登录成功
+	    	if (!matchUsers.isEmpty()) {
+	    		userLoginSuccess = true;
+	    	}
+	    	else {
+	    		userLoginSuccess = false;
+	    	}
+
+	        // 提交事务
+	        transaction.commit();
+	    } catch (HibernateException e) {
+	         if (transaction != null) {
+	        	 transaction.rollback();
+	         }
+	         e.printStackTrace();
+	         userLoginSuccess = false;
+	    } finally {
+	    	session.close(); 
+	    }
+	    return userLoginSuccess ? true : false;
 	}
 	
 }
