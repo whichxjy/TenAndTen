@@ -1,26 +1,21 @@
 package com.action;
 
-import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
+import com.service.UserService;
+import com.service.impl.UserServiceImpl;
 
 public class UserRegisterAction extends ActionSupport {
-	private User user;
-	
-	private UserDAO userDAO;
+	private User user;		
+	private UserService userService;
 	
 	public UserRegisterAction() {
-		userDAO = UserDAO.getUserDAO();
+		userService = UserServiceImpl.getUserServiceImpl();
 	}
 	
 	public String execute() {
-		// 注册用户
-		if (userDAO.addUser(user.getName(), user.getPassword())) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		// 用户注册
+		return userService.register(user) ? SUCCESS : ERROR;
 	}
 
 	public User getUser() {
