@@ -1,6 +1,7 @@
 package com.pojo;
 
 public class Manager {
+	private int id;
 	private String name;
 	private String password;
 	
@@ -12,6 +13,20 @@ public class Manager {
 	public Manager(String userName, String userPassword) {
 		setName(userName);
 		setPassword(userPassword);
+	}
+	
+	public Manager(int id, String userName, String userPassword) {
+		setId(id);
+		setName(userName);
+		setPassword(userPassword);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

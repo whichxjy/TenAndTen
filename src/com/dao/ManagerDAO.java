@@ -1,48 +1,16 @@
 package com.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
-public class ManagerDAO {
-	private static volatile ManagerDAO managerDAO;
+import com.pojo.Manager;
+
+public interface ManagerDAO {
+	boolean insert(Manager manager);
+	boolean update(Manager manager);
+	boolean delete(Manager manager);
 	
-	private ConnDB connDB;
-	
-	private ManagerDAO() {
-		connDB = ConnDB.getConnDB();
-		managerDAO = null;
-	}
-	
-    public static ManagerDAO getManagerDAO(){
-        if(managerDAO == null){
-            synchronized (ManagerDAO.class){
-                if(managerDAO == null){
-                	managerDAO = new ManagerDAO();
-                }
-            }
-        }
-        return managerDAO;
-    } 
-	
-	// 判断数据库中是否存在匹配管理员及密码的用户
-	// 如果有匹配的管理员，则登录成功
-	public boolean managerLogin(String managerName, String managerPassword) {
-		ResultSet matchUsers = connDB.executeQuery(
-			  "SELECT * "
-			+ "FROM managers "
-			+ "WHERE manager_name='" + managerName + "' "
-			+ "AND manager_password='" + managerPassword + "'"
-		);
-		try {
-			if (matchUsers.next()) {
-				// 有匹配的用户
-				return true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
-	
+	Manager findById(int id);
+	Manager findByName(String name);
+	Manager findByNameAndPassword(String name, String password);
+	List<Manager> findAll();
 }

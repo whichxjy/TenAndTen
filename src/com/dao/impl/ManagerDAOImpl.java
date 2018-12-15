@@ -14,13 +14,13 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.dao.UserDAO;
-import com.pojo.User;
+import com.dao.ManagerDAO;
+import com.pojo.Manager;
 
-public class UserDAOImpl implements UserDAO {
+public class ManagerDAOImpl implements ManagerDAO {
 	private static SessionFactory factory; 
 	
-	public UserDAOImpl() {
+	public ManagerDAOImpl() {
 		try{
 			// 实例化配置文件，然后创建 SessionFactory
 			factory = new Configuration().configure().buildSessionFactory();
@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public boolean insert(User user) {
+	public boolean insert(Manager manager) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -40,8 +40,8 @@ public class UserDAOImpl implements UserDAO {
 	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 保存用户
-	        session.save(user);
+	    	// 保存管理员
+	        session.save(manager);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -59,7 +59,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(Manager manager) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -68,8 +68,8 @@ public class UserDAOImpl implements UserDAO {
 	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 更改用户信息
-	        session.update(user);
+	    	// 更改管理员信息
+	        session.update(manager);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -87,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(Manager manager) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -96,8 +96,8 @@ public class UserDAOImpl implements UserDAO {
 	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 删除用户
-	        session.delete(user);
+	    	// 删除管理员
+	        session.delete(manager);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -115,7 +115,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findById(int id) {
+	public Manager findById(int id) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -125,19 +125,19 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<Manager> query = builder.createQuery(Manager.class);
+	    	Root<Manager> root = query.from(Manager.class);
 	    	
-	    	// 查询数据库中 ID 相同的用户
+	    	// 查询数据库中 ID 相同的管理员
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameIdUser = q.getResultList();
+	    	Query<Manager> q = session.createQuery(query);
+	    	List<Manager> sameIdManager = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdUser.isEmpty() ? null : sameIdUser.get(0);
+	    	return sameIdManager.isEmpty() ? null : sameIdManager.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -149,7 +149,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findByName(String name) {
+	public Manager findByName(String name) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -159,19 +159,19 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<Manager> query = builder.createQuery(Manager.class);
+	    	Root<Manager> root = query.from(Manager.class);
 	    	
-	    	// 查询数据库中名字相同的用户
+	    	// 查询数据库中名字相同的管理员
 	    	query.select(root).where(builder.equal(root.get("name"), name));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameNameUser = q.getResultList();
+	    	Query<Manager> q = session.createQuery(query);
+	    	List<Manager> sameNameManager = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameNameUser.isEmpty() ? null : sameNameUser.get(0);
+	    	return sameNameManager.isEmpty() ? null : sameNameManager.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -183,7 +183,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findByNameAndPassword(String name, String password) {
+	public Manager findByNameAndPassword(String name, String password) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -193,22 +193,22 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<Manager> query = builder.createQuery(Manager.class);
+	    	Root<Manager> root = query.from(Manager.class);
 	    	
-	    	// 查询数据库中名字和密码都相同的用户
+	    	// 查询数据库中名字和密码都相同的管理员
 	    	query.select(root).where(builder.and(
 	    		builder.equal(root.get("name"), name), 
 	    		builder.equal(root.get("password"), password)
 	    	)); 
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> matchUser = q.getResultList();
+	    	Query<Manager> q = session.createQuery(query);
+	    	List<Manager> matchManager = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return matchUser.isEmpty() ? null : matchUser.get(0);
+	    	return matchManager.isEmpty() ? null : matchManager.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -218,9 +218,9 @@ public class UserDAOImpl implements UserDAO {
 	         return null;
 	    }
 	}
-	
+
 	@Override
-	public List<User> findAll() {
+	public List<Manager> findAll() {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -230,27 +230,27 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<Manager> query = builder.createQuery(Manager.class);
+	    	Root<Manager> root = query.from(Manager.class);
 	    	
-	    	// 查询数据库中全部用户
+	    	// 查询数据库中全部管理员
 	    	query.select(root);
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> allUsers = q.getResultList();
+	    	Query<Manager> q = session.createQuery(query);
+	    	List<Manager> allManagers = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return allUsers;
+	    	return allManagers;
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
 	         }
 	         e.printStackTrace();
 	         session.close();
-	         return new ArrayList<User>();
+	         return new ArrayList<Manager>();
 	    }
 	}
-	
+
 }

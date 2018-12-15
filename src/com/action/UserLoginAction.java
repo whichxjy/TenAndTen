@@ -2,22 +2,22 @@ package com.action;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.dao.UserDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
+import com.service.UserService;
+import com.service.impl.UserServiceImpl;
 
 public class UserLoginAction extends ActionSupport {
-	private User user;	
-	
-	private UserDAO userDAO;
+	private User user;		
+	private UserService userService;
 	
 	public UserLoginAction() {
-		userDAO = UserDAO.getUserDAO();
+		userService = UserServiceImpl.getUserServiceImpl();
 	}
 	
 	public String execute() {
 		// µÇÂ¼		
-		if (userDAO.userLogin(user.getName(), user.getPassword())) {
+		if (userService.login(user)) {
 			ServletActionContext.getRequest().getSession().setAttribute("user", user);
 			return SUCCESS;
 		}
