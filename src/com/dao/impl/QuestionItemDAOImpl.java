@@ -14,13 +14,13 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.dao.UserDAO;
-import com.pojo.User;
+import com.dao.QuestionItemDAO;
+import com.pojo.QuestionItem;
 
-public class UserDAOImpl implements UserDAO {
-	private static SessionFactory factory; 
+public class QuestionItemDAOImpl implements QuestionItemDAO {
+	private static SessionFactory factory;
 	
-	public UserDAOImpl() {
+	public QuestionItemDAOImpl() {
 		try{
 			// 实例化配置文件，然后创建 SessionFactory
 			factory = new Configuration().configure().buildSessionFactory();
@@ -29,19 +29,19 @@ public class UserDAOImpl implements UserDAO {
 	        throw new ExceptionInInitializerError(e); 
 	    }
 	}
-	
+		
 	@Override
-	public boolean insert(User user) {
+	public boolean insert(QuestionItem questionItem) {
 		// 创建 Session
 	    Session session = factory.openSession();
+    	// 开始事务
 	    Transaction transaction = null;
 	
 	    try {
-	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 保存用户
-	        session.save(user);
+	    	// 保存问题项
+	        session.save(questionItem);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -59,17 +59,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(QuestionItem questionItem) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
 	
-	    try {
+	    try { 
 	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 更改用户信息
-	        session.update(user);
+	    	// 更改问题项信息
+	        session.update(questionItem);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -87,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(QuestionItem questionItem) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -96,8 +96,8 @@ public class UserDAOImpl implements UserDAO {
 	    	// 开始事务
 	    	transaction = session.beginTransaction();
 	    	
-	    	// 删除用户
-	        session.delete(user);
+	    	// 删除问题项
+	        session.delete(questionItem);
 	        
 	        // 提交事务
 	    	transaction.commit();
@@ -115,7 +115,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findById(int id) {
+	public QuestionItem findById(int id) {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -125,19 +125,19 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<QuestionItem> query = builder.createQuery(QuestionItem.class);
+	    	Root<QuestionItem> root = query.from(QuestionItem.class);
 	    	
-	    	// 查询数据库中 ID 相同的用户
+	    	// 查询数据库中 ID 相同的问题项
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameIdUser = q.getResultList();
+	    	Query<QuestionItem> q = session.createQuery(query);
+	    	List<QuestionItem> sameIdQuestionItem = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdUser.isEmpty() ? null : sameIdUser.get(0);
+	    	return sameIdQuestionItem.isEmpty() ? null : sameIdQuestionItem.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -149,7 +149,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User findByName(String name) {
+	public List<QuestionItem> findAll() {
 		// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
@@ -159,98 +159,28 @@ public class UserDAOImpl implements UserDAO {
 	    	transaction = session.beginTransaction();
 	    	
 	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
-	    	
-	    	// 查询数据库中名字相同的用户
-	    	query.select(root).where(builder.equal(root.get("name"), name));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameNameUser = q.getResultList();
-	        
-	        // 提交事务
-	    	transaction.commit();
-	    	
-	    	session.close();
-	    	return sameNameUser.isEmpty() ? null : sameNameUser.get(0);
-	    } catch (HibernateException e) {
-	         if (transaction != null) {
-	        	 transaction.rollback();
-	         }
-	         e.printStackTrace();
-	         session.close();
-	         return null;
-	    }
-	}
-
-	@Override
-	public User findByNameAndPassword(String name, String password) {
-		// 创建 Session
-	    Session session = factory.openSession();
-	    Transaction transaction = null;
-	
-	    try {
-	    	// 开始事务
-	    	transaction = session.beginTransaction();
-	    	
-	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
-	    	
-	    	// 查询数据库中名字和密码都相同的用户
-	    	query.select(root).where(builder.and(
-	    		builder.equal(root.get("name"), name), 
-	    		builder.equal(root.get("password"), password)
-	    	)); 
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> matchUser = q.getResultList();
-	        
-	        // 提交事务
-	    	transaction.commit();
-	    	
-	    	session.close();
-	    	return matchUser.isEmpty() ? null : matchUser.get(0);
-	    } catch (HibernateException e) {
-	         if (transaction != null) {
-	        	 transaction.rollback();
-	         }
-	         e.printStackTrace();
-	         session.close();
-	         return null;
-	    }
-	}
-	
-	@Override
-	public List<User> findAll() {
-		// 创建 Session
-	    Session session = factory.openSession();
-	    Transaction transaction = null;
-	
-	    try {
-	    	// 开始事务
-	    	transaction = session.beginTransaction();
-	    	
-	    	CriteriaBuilder builder = session.getCriteriaBuilder();
-	    	CriteriaQuery<User> query = builder.createQuery(User.class);
-	    	Root<User> root = query.from(User.class);
+	    	CriteriaQuery<QuestionItem> query = builder.createQuery(QuestionItem.class);
+	    	Root<QuestionItem> root = query.from(QuestionItem.class);
 	    	
 	    	// 查询数据库中全部用户
 	    	query.select(root);
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> allUsers = q.getResultList();
+	    	Query<QuestionItem> q = session.createQuery(query);
+	    	List<QuestionItem> allQuestionItems = q.getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return allUsers;
+	    	return allQuestionItems;
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
 	         }
 	         e.printStackTrace();
 	         session.close();
-	         return new ArrayList<User>();
+	         return new ArrayList<QuestionItem>();
 	    }
 	}
 	
+
 }

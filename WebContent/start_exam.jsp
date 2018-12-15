@@ -10,8 +10,8 @@
 		名字：<s:property value="#session.user.name"/> <br/>
 		
 		<form action="submitAnswers" method="post">
-			<s:iterator value="questions" var='question'  status="status">
-				question<s:property value="#status.count"/>: <s:property value="question"/><br/>
+			<s:iterator value="questionItems" var='questionItem'  status="status">
+				question<s:property value="#status.count"/>: <s:property value="questionItem.question"/><br/>
 				<input type="text" name="userAnswers[${status.index}]"/><br/>
 			</s:iterator>
 			

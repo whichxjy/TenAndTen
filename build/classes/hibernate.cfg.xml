@@ -26,6 +26,7 @@
    <!-- List of XML mapping files -->
    <mapping resource="./com/pojo/User.hbm.xml"/>
    <mapping resource="./com/pojo/Manager.hbm.xml"/>
+   <mapping resource="./com/pojo/QuestionItem.hbm.xml"/>
 
 </session-factory>
 </hibernate-configuration> 

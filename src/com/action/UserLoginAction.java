@@ -9,15 +9,15 @@ import com.service.impl.UserServiceImpl;
 
 public class UserLoginAction extends ActionSupport {
 	private User user;		
-	private UserService userService;
+	private UserService uService;
 	
 	public UserLoginAction() {
-		userService = UserServiceImpl.getUserServiceImpl();
+		uService = UserServiceImpl.getService();
 	}
 	
 	public String execute() {
 		// µÇÂ¼		
-		if (userService.login(user)) {
+		if (uService.login(user)) {
 			ServletActionContext.getRequest().getSession().setAttribute("user", user);
 			return SUCCESS;
 		}

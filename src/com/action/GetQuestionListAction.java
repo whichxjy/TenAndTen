@@ -2,21 +2,22 @@ package com.action;
 
 import java.util.List;
 
-import com.dao.QuestionDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.QuestionItem;
+import com.service.QuestionItemService;
+import com.service.impl.QuestionItemServiceImpl;
 
 public class GetQuestionListAction extends ActionSupport {
 	private List<QuestionItem> questionItems;
 	private int totalNumberOfQuestions;
-	private QuestionDAO questionDAO;
+	private QuestionItemService qService;
 	
 	public GetQuestionListAction() {
-		questionDAO = QuestionDAO.getQuestionDAO();
+		qService = QuestionItemServiceImpl.getService();
 	}
 	
 	public String execute() {
-		setQuestionItems(questionDAO.getAllQuestionItems());
+		setQuestionItems(qService.getAllQuestionItems());
 		setTotalNumberOfQuestions(questionItems.size());
 		return SUCCESS;
 	}

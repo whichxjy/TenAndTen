@@ -7,15 +7,15 @@ import com.service.impl.UserServiceImpl;
 
 public class UserRegisterAction extends ActionSupport {
 	private User user;		
-	private UserService userService;
+	private UserService uService;
 	
 	public UserRegisterAction() {
-		userService = UserServiceImpl.getUserServiceImpl();
+		uService = UserServiceImpl.getService();
 	}
 	
 	public String execute() {
 		// ÓÃ»§×¢²á
-		return userService.register(user) ? SUCCESS : ERROR;
+		return uService.register(user) ? SUCCESS : ERROR;
 	}
 
 	public User getUser() {

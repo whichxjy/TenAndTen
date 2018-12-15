@@ -24,9 +24,9 @@ public class ManagerDAOImpl implements ManagerDAO {
 		try{
 			// 实例化配置文件，然后创建 SessionFactory
 			factory = new Configuration().configure().buildSessionFactory();
-	    }catch (Throwable ex) { 
-	    	System.err.println("Failed to create sessionFactory object." + ex);
-	        throw new ExceptionInInitializerError(ex); 
+	    } catch (Throwable e) { 
+	    	System.err.println("Failed to create sessionFactory object." + e);
+	        throw new ExceptionInInitializerError(e); 
 	    }
 	}
 	
@@ -117,7 +117,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 	@Override
 	public Manager findById(int id) {
 		// 创建 Session
-	    Session session = factory.openSession();
+		Session session = factory.openSession();
 	    Transaction transaction = null;
 	
 	    try {
@@ -150,7 +150,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 
 	@Override
 	public Manager findByName(String name) {
-		// 创建 Session
+    	// 创建 Session
 	    Session session = factory.openSession();
 	    Transaction transaction = null;
 	

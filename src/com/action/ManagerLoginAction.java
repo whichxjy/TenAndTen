@@ -9,16 +9,16 @@ import com.service.impl.ManagerServiceImpl;
 
 public class ManagerLoginAction extends ActionSupport {
 	private Manager manager;
-	private ManagerService managerService;
+	private ManagerService mService;
 	private String tip; // 登录提示
 		
 	public ManagerLoginAction() {
-		managerService = ManagerServiceImpl.getManagerServiceImpl();
+		mService = ManagerServiceImpl.getService();
 	}
 	
 	public String execute() {
 		// 登录
-		if (managerService.login(manager)) {
+		if (mService.login(manager)) {
 			setTip("管理员 " + manager.getName() + "登录成功！");
 			ServletActionContext.getRequest().getSession().setAttribute("manager", manager);
 			return SUCCESS;

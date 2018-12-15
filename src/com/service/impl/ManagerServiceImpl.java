@@ -6,28 +6,28 @@ import com.pojo.Manager;
 import com.service.ManagerService;
 
 public class ManagerServiceImpl implements ManagerService {
-	private static volatile ManagerServiceImpl managerServiceImpl;
-	private ManagerDAO managerDAO;
+	private static volatile ManagerServiceImpl serviceImpl;
+	private ManagerDAO dao;
 	
 	private ManagerServiceImpl() {
-		managerDAO = new ManagerDAOImpl();
+		dao = new ManagerDAOImpl();
 	}
 	
-	public static ManagerServiceImpl getManagerServiceImpl(){
-        if(managerServiceImpl == null){
+	public static ManagerServiceImpl getService(){
+        if(serviceImpl == null){
             synchronized (ManagerServiceImpl.class){
-                if(managerServiceImpl == null){
-                	managerServiceImpl = new ManagerServiceImpl();
+                if(serviceImpl == null){
+                	serviceImpl = new ManagerServiceImpl();
                 }
             }
         }
-        return managerServiceImpl;
+        return serviceImpl;
     }
 	
 	@Override
 	public boolean login(Manager manager) {
 		// 查看数据库中是否有姓名和密码都匹配的用户
-		Manager matchManager = managerDAO.findByNameAndPassword(manager.getName(), manager.getPassword());
+		Manager matchManager = dao.findByNameAndPassword(manager.getName(), manager.getPassword());
 		return matchManager == null ? false : true;
 	}
 

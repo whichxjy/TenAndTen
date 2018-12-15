@@ -1,25 +1,20 @@
 package com.action;
 
-import com.dao.QuestionDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.QuestionItem;
+import com.service.QuestionItemService;
+import com.service.impl.QuestionItemServiceImpl;
 
 public class AddQuestionAction extends ActionSupport {
 	private QuestionItem questionItem;
-	
-	private QuestionDAO questionDAO;
+	private QuestionItemService qService;
 	
 	public AddQuestionAction() {
-		questionDAO = QuestionDAO.getQuestionDAO();
+		qService = QuestionItemServiceImpl.getService();
 	}
 	
 	public String execute() {
-		if (questionDAO.addQuestion(questionItem.getQuestion(), questionItem.getRightAnswer())) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		return qService.addQuestionItem(questionItem) ? SUCCESS : ERROR;
 	}
 
 	public QuestionItem getQuestionItem() {
