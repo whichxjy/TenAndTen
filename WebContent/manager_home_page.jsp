@@ -15,7 +15,7 @@
 			<input type="submit" value="进入题库界面"/>
 		</s:form>
 		
-		<s:form action="getExamResultTable" method="post">
+		<s:form action="getExamGrades" method="post">
 			<input type="submit" value="进入成绩表界面"/>
 		</s:form>
 					

@@ -8,6 +8,6 @@
     </head>
 	<body>
 		名字：<s:property value="#session.user.name"/> <br/>
-		成绩：<s:property value="grade"/>
+		成绩：<s:property value="score"/>
 	</body>
 </html>

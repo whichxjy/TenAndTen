@@ -2,34 +2,31 @@ package com.action;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.dao.GradeDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
+import com.service.GradeService;
+import com.service.impl.GradeServiceImpl;
 
 public class UserQueryGradeAction extends ActionSupport {
-	private int grade;
-	private GradeDAO gradeDAO;
+	private int score;
+	private GradeService gService;
 	
 	public UserQueryGradeAction() {
-		gradeDAO = GradeDAO.getGradeDAO();
+		gService = GradeServiceImpl.getService();
 	}
 
 	public String execute() {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");	
-		setGrade(gradeDAO.getGradeByName(user.getName()));
-		if (getGrade() != -1) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
-	}
-	
-	public int getGrade() {
-		return grade;
+		setScore(gService.queryGrade(user));
+		return score == -1 ? ERROR : SUCCESS;
 	}
 
-	public void setGrade(int grade) {
-		this.grade = grade;
+	public int getScore() {
+		return score;
 	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 }

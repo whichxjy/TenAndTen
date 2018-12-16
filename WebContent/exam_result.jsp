@@ -11,7 +11,7 @@
 		正确答案:：<br/>
 		<s:iterator value="rightAnswers" var='rightAnswer' status="status">
 				question<s:property value="#status.count"/>:<br/>
-				<s:property value="rightAnswer"/><br/>
+				<s:property value="#rightAnswer"/><br/>
 		</s:iterator>
 		
 	</body>

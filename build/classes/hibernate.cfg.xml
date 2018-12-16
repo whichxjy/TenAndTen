@@ -27,6 +27,7 @@
    <mapping resource="./com/pojo/User.hbm.xml"/>
    <mapping resource="./com/pojo/Manager.hbm.xml"/>
    <mapping resource="./com/pojo/QuestionItem.hbm.xml"/>
+   <mapping resource="./com/pojo/Grade.hbm.xml"/>
 
 </session-factory>
 </hibernate-configuration> 

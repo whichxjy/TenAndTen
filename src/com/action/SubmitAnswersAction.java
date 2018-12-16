@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.dao.GradeDAO;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
+import com.service.GradeService;
 import com.service.QuestionItemService;
+import com.service.impl.GradeServiceImpl;
 import com.service.impl.QuestionItemServiceImpl;
 
 public class SubmitAnswersAction extends ActionSupport {
@@ -15,26 +16,18 @@ public class SubmitAnswersAction extends ActionSupport {
 	private int score; // ¿¼ÊÔ³É¼¨
 		
 	private QuestionItemService qService;
-	private GradeDAO gradeDAO;
+	private GradeService gService;
 	
 	public SubmitAnswersAction() {
 		qService = QuestionItemServiceImpl.getService();
-		gradeDAO = GradeDAO.getGradeDAO();
+		gService = GradeServiceImpl.getService();
 		setScore(0);
 	}
 	
 	public String execute() {
 		setScore(qService.getExamGrade(userAnswers));
-		
-		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		// Â¼Èë³É¼¨
-		if (gradeDAO.addGrade(user.getName(), getScore()) || gradeDAO.updateGrade(user.getName(), getScore())) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
-			
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");	
+		return (gService.updateGrade(user, score) || gService.addGrade(user, score)) ? SUCCESS : ERROR;
 	}
 
 	public List<String> getUserAnswers() {

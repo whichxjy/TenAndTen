@@ -4,13 +4,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Result Table</title>
+        <title>Exam Grades</title>
     </head>
 	<body>
 	
-		<s:iterator value="examResult">
-			姓名：<s:property value="key"/><br/>
-			成绩：<s:property value="value"/><br/>
+		<s:iterator value="grades" var="grade" status="status">
+			ID：<s:property value="#grade.id"/><br/>
+			姓名：<s:property value="#grade.userName"/><br/>
+			成绩：<s:property value="#grade.score"/><br/>
 		</s:iterator>
 		
 		<a href="manager_home_page.jsp">返回主页</a>

@@ -53,8 +53,8 @@
         </action>
         
         <!-- 管理员获得成绩表 -->
-        <action name="getExamResultTable" class="com.action.GetExamResultTableAction" method="execute">
-            <result name="success">/exam_result_table.jsp</result>
+        <action name="getExamGrades" class="com.action.GetExamGradesAction" method="execute">
+            <result name="success">/exam_grades.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
         
