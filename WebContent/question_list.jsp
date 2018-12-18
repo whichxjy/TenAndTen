@@ -7,18 +7,6 @@
         <title>Question List</title>
     </head>
 	<body>
-		题目总数：<s:property value="totalNumberOfQuestions"/><br/>
-		<s:iterator value="questionItems" var="questionItem" status="status">
-			题号：<s:property value="#questionItem.id"/><br/>
-			题目：<s:property value="#questionItem.question"/><br/>
-			答案：<s:property value="#questionItem.rightAnswer"/><br/>
-		</s:iterator>
-		
-		<a href="add_question.jsp">
-			<input type="submit" value="进入添加题目界面"/>   
-		</a>
-		
-		<a href="manager_home_page.jsp">返回主页</a>
-	
+		<s:action name="getQuestionList" executeResult="true"/>
 	</body>
 </html>

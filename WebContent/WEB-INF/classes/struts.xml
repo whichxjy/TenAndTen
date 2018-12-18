@@ -9,6 +9,8 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>
+        
+        <!-- ****************************************** 用户 ****************************************** -->
 		
 		<!-- 用户注册 -->
         <action name="userRegister" class="com.action.UserRegisterAction" method="execute">
@@ -22,19 +24,7 @@
             <result name="error">/login_error.jsp</result>
         </action>
         
-        <!-- 管理员登录 -->
-        <action name="managerLogin" class="com.action.ManagerLoginAction" method="execute">
-            <result name="success">/manager_home_page.jsp</result>
-            <result name="error">/login_error.jsp</result>
-        </action>
-        
-		<!-- 管理员添加题目 -->
-        <action name="addQuestion" class="com.action.AddQuestionAction" method="execute">
-            <result name="success">/question_list.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>
-             
-        <!-- 开始考试 -->
+		<!-- 开始考试 -->
         <action name="startExam" class="com.action.StartExamAction" method="execute">
             <result name="success">/start_exam.jsp</result>
             <result name="error">/error.jsp</result>
@@ -52,6 +42,14 @@
             <result name="error">/error.jsp</result>
         </action>
         
+        <!-- ****************************************** 管理员 ****************************************** -->
+        
+        <!-- 管理员登录 -->
+        <action name="managerLogin" class="com.action.ManagerLoginAction" method="execute">
+            <result name="success">/manager_home_page.jsp</result>
+            <result name="error">/login_error.jsp</result>
+        </action>
+ 
         <!-- 管理员获得成绩表 -->
         <action name="getExamGrades" class="com.action.GetExamGradesAction" method="execute">
             <result name="success">/exam_grades.jsp</result>
@@ -60,10 +58,21 @@
         
 		<!-- 管理员查看题库 -->
         <action name="getQuestionList" class="com.action.GetQuestionListAction" method="execute">
+            <result name="success">/get_questions.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <!-- 管理员添加题目 -->
+        <action name="addQuestion" class="com.action.AddQuestionAction" method="execute">
             <result name="success">/question_list.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
         
-        
+		<!-- 管理员删除题目 -->
+        <action name="deleteQuestion" class="com.action.DeleteQuestionAction" method="execute">
+            <result name="success">/question_list.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+                
     </package>
 </struts>

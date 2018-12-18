@@ -31,6 +31,16 @@ public class QuestionItemServiceImpl implements QuestionItemService{
 	public boolean addQuestionItem(QuestionItem questionItem) {
 		return dao.insert(questionItem);
 	}
+	
+	@Override
+	public boolean deleteQuestionItem(QuestionItem questionItem) {
+		return dao.delete(questionItem);
+	}
+	
+	@Override
+	public boolean deleteQuestionItem(int questionId) {
+		return dao.delete(dao.findById(questionId));
+	}
 
 	@Override
 	public List<QuestionItem> getAllQuestionItems() {
@@ -54,5 +64,6 @@ public class QuestionItemServiceImpl implements QuestionItemService{
 		
 		return score;
 	}
+
 
 }

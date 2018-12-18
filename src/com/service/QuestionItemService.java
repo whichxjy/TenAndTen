@@ -8,6 +8,12 @@ public interface QuestionItemService {
 	// 添加问题项
 	public boolean addQuestionItem(QuestionItem questionItem);
 	
+	// 删除问题项
+	public boolean deleteQuestionItem(QuestionItem questionItem);
+	
+	// 删除问题项
+	public boolean deleteQuestionItem(int questionId);
+	
 	// 获取所有问题项
 	public List<QuestionItem> getAllQuestionItems();
 	
