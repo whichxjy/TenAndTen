@@ -33,10 +33,39 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean register(User user) {
+		if (!checkUser(user))
+			return false;
+		
 		// 查看数据库中是否已有同名用户
 		User sameNameUser = dao.findByName(user.getName());
 		// 如果没有同名用户，则可注册; 否则注册失败
 		return (sameNameUser == null && dao.insert(user));	
+	}
+
+	@Override
+	public boolean changePassword(User user, String oldPassword, String newPassword) {
+		if (!checkPassword(newPassword))
+			return false;
+		
+		User matchUser = dao.findByNameAndPassword(user.getName(), oldPassword);
+			
+		if (matchUser != null) {
+			matchUser.setPassword(newPassword);
+			dao.update(matchUser);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private boolean checkUser(User user) {
+		return (user.getName().length() >= 4 && user.getName().length() <= 20 
+				&& user.getPassword().length() >= 8 && user.getPassword().length() <= 20);
+	}
+	
+	private boolean checkPassword(String password) {
+		return (password.length() >= 8 && password.length() <= 20);
 	}
 	
 }

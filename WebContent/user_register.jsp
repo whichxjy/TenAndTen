@@ -8,8 +8,8 @@
     </head>
 	<body>
 		<form action="userRegister" method="post">
-	      User:<br/><input type="text" name="user.name"/><br/>
-	      Password:<br/><input type="password" name="user.password"/><br/>
+			用户名:：<input type="text" name="user.name"/><br/>
+			密码：<input type="password" name="user.password"/><br/>
 	      <input type="submit" value="注册"/>	
 	   </form>
 	</body>

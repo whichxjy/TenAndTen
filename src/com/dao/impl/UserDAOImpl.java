@@ -201,14 +201,13 @@ public class UserDAOImpl implements UserDAO {
 	    		builder.equal(root.get("name"), name), 
 	    		builder.equal(root.get("password"), password)
 	    	)); 
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> matchUser = q.getResultList();
+	    	List<User> matchUsers = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return matchUser.isEmpty() ? null : matchUser.get(0);
+	    	return matchUsers.isEmpty() ? null : matchUsers.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
