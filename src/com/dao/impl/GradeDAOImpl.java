@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import com.dao.GradeDAO;
 import com.pojo.Grade;
@@ -130,14 +129,13 @@ public class GradeDAOImpl implements GradeDAO {
 	    	
 	    	// 查询数据库中与 ID 匹配的成绩
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<Grade> q = session.createQuery(query);
-	    	List<Grade> sameIdGrade = q.getResultList();
+	    	List<Grade> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdGrade.isEmpty() ? null : sameIdGrade.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -164,14 +162,13 @@ public class GradeDAOImpl implements GradeDAO {
 	    	
 	    	// 查询数据库中与用户名匹配的成绩
 	    	query.select(root).where(builder.equal(root.get("userName"), userName));
-	    	Query<Grade> q = session.createQuery(query);
-	    	List<Grade> sameUserNameGrade = q.getResultList();
+	    	List<Grade> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameUserNameGrade.isEmpty() ? null : sameUserNameGrade.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -198,14 +195,13 @@ public class GradeDAOImpl implements GradeDAO {
 	    	
 	    	// 查询数据库中全部成绩
 	    	query.select(root);
-	    	Query<Grade> q = session.createQuery(query);
-	    	List<Grade> allUsers = q.getResultList();
+	    	List<Grade> allGrades = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return allUsers;
+	    	return allGrades;
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();

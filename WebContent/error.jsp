@@ -4,9 +4,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error</title>
+        <title>出现错误</title>
     </head>
 	<body>
-		出现未知错误
+		<p>Something's wrong, I can feel it. Just a feeling I've got, like something's about to happen, but I don't know what.</p>
 	</body>
 </html>

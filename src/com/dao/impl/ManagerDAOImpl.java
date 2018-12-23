@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import com.dao.ManagerDAO;
 import com.pojo.Manager;
@@ -130,14 +129,13 @@ public class ManagerDAOImpl implements ManagerDAO {
 	    	
 	    	// 查询数据库中 ID 相同的管理员
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<Manager> q = session.createQuery(query);
-	    	List<Manager> sameIdManager = q.getResultList();
+	    	List<Manager> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdManager.isEmpty() ? null : sameIdManager.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -163,15 +161,14 @@ public class ManagerDAOImpl implements ManagerDAO {
 	    	Root<Manager> root = query.from(Manager.class);
 	    	
 	    	// 查询数据库中名字相同的管理员
-	    	query.select(root).where(builder.equal(root.get("name"), name));
-	    	Query<Manager> q = session.createQuery(query);
-	    	List<Manager> sameNameManager = q.getResultList();
-	        
+	    	query.select(root).where(builder.equal(root.get("name"), name));  	    	
+	    	List<Manager> resultList = session.createQuery(query).getResultList();
+	    	
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameNameManager.isEmpty() ? null : sameNameManager.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -200,15 +197,14 @@ public class ManagerDAOImpl implements ManagerDAO {
 	    	query.select(root).where(builder.and(
 	    		builder.equal(root.get("name"), name), 
 	    		builder.equal(root.get("password"), password)
-	    	)); 
-	    	Query<Manager> q = session.createQuery(query);
-	    	List<Manager> matchManager = q.getResultList();
+	    	));  	
+	    	List<Manager> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return matchManager.isEmpty() ? null : matchManager.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -235,9 +231,8 @@ public class ManagerDAOImpl implements ManagerDAO {
 	    	
 	    	// 查询数据库中全部管理员
 	    	query.select(root);
-	    	Query<Manager> q = session.createQuery(query);
-	    	List<Manager> allManagers = q.getResultList();
-	        
+	    	List<Manager> allManagers = session.createQuery(query).getResultList();
+	    	      
 	        // 提交事务
 	    	transaction.commit();
 	    	

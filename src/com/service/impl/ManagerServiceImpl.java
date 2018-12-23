@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.dao.ManagerDAO;
 import com.dao.impl.ManagerDAOImpl;
 import com.pojo.Manager;
@@ -26,9 +28,12 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	@Override
 	public boolean login(Manager manager) {
-		// 查看数据库中是否有姓名和密码都匹配的用户
 		Manager matchManager = dao.findByNameAndPassword(manager.getName(), manager.getPassword());
-		return matchManager == null ? false : true;
+		if (matchManager == null)
+			return false;
+		
+		ServletActionContext.getRequest().getSession().setAttribute("manager", matchManager);
+		return true;
 	}
 
 }

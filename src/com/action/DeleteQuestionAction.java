@@ -16,7 +16,7 @@ public class DeleteQuestionAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		int questionId = Integer.parseInt(ServletActionContext.getRequest().getParameter("Flag"));		
+		int questionId = Integer.parseInt(ServletActionContext.getRequest().getParameter("question_id"));		
 		return qService.deleteQuestionItem(questionId) ? SUCCESS : ERROR;
 	}
 

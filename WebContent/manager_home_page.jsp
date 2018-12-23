@@ -7,17 +7,18 @@
         <title>Manager Home Page</title>
     </head>
 	<body>
-		管理员名字：<s:property value="#session.manager.name"/> <br/>
-		Login Success! <br/>
-		<s:property value="tip"/>
+		<p>欢迎管理员 <s:property value="#session.manager.name"/></p>
 		
-		<s:form action="getQuestionList" method="post">
-			<input type="submit" value="进入题库界面"/>
-		</s:form>
+		<a href="question_list.jsp">
+			<input type="submit" value="查看题库"/>
+		</a>
 		
 		<s:form action="getExamGrades" method="post">
-			<input type="submit" value="进入成绩表界面"/>
+			<input type="submit" value="查看成绩表"/>
 		</s:form>
+		
+		<a href="managerQuit.action">退出</a>
+		
 					
 	</body>
 </html>

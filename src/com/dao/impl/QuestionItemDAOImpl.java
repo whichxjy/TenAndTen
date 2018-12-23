@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import com.dao.QuestionItemDAO;
 import com.pojo.QuestionItem;
@@ -130,14 +129,13 @@ public class QuestionItemDAOImpl implements QuestionItemDAO {
 	    	
 	    	// 查询数据库中 ID 相同的问题项
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<QuestionItem> q = session.createQuery(query);
-	    	List<QuestionItem> sameIdQuestionItem = q.getResultList();
+	    	List<QuestionItem> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdQuestionItem.isEmpty() ? null : sameIdQuestionItem.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -164,8 +162,7 @@ public class QuestionItemDAOImpl implements QuestionItemDAO {
 	    	
 	    	// 查询数据库中全部用户
 	    	query.select(root);
-	    	Query<QuestionItem> q = session.createQuery(query);
-	    	List<QuestionItem> allQuestionItems = q.getResultList();
+	    	List<QuestionItem> allQuestionItems = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();

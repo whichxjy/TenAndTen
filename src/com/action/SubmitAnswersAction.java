@@ -21,7 +21,6 @@ public class SubmitAnswersAction extends ActionSupport {
 	public SubmitAnswersAction() {
 		qService = QuestionItemServiceImpl.getService();
 		gService = GradeServiceImpl.getService();
-		setScore(0);
 	}
 	
 	public String execute() {

@@ -4,9 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LoginError</title>
+        <title>登录失败</title>
     </head>
 	<body>
-		Login Error
+		<p>登录失败</p>
+		<a href="index.jsp">返回首页</a>
 	</body>
 </html>

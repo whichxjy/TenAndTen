@@ -9,20 +9,20 @@ public class User {
 	public User() {
 		setName(null);
 		setPassword(null);
-		setProfilePicPath("haha");
+		setProfilePicPath("-");
 	}
 	
 	public User(String userName, String userPassword) {
 		setName(userName);
 		setPassword(userPassword);
-		setProfilePicPath("haha");
+		setProfilePicPath("-");
 	}
 	
 	public User(int id, String userName, String userPassword) {
 		this.id = id;
 		name = userName;
 		password = userPassword;
-		setProfilePicPath("haha");
+		setProfilePicPath("-");
 	}
 	
 	public int getId() {

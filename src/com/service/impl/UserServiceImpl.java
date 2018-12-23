@@ -30,15 +30,6 @@ public class UserServiceImpl implements UserService {
         }
         return serviceImpl;
     }
-	
-//	private void setSessionUser(User user) {
-//		ServletActionContext.getRequest().getSession().setAttribute("user", user);
-//	}
-	
-//	@Override
-//	public User getSessionUser() {
-//		return (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-//	}
 
 	@Override
 	public boolean login(User user) {
@@ -46,6 +37,7 @@ public class UserServiceImpl implements UserService {
 		User matchUser = dao.findByNameAndPassword(user.getName(), user.getPassword());
 		if (matchUser == null)
 			return false;
+		
 		ServletActionContext.getRequest().getSession().setAttribute("user", matchUser);
 		return true;
 	}
@@ -62,8 +54,7 @@ public class UserServiceImpl implements UserService {
 			return false;
 		
 		user.setProfilePicPath(ServletActionContext.getServletContext().getRealPath("/WEB-INF/" + profilePath + "/default.png"));
-		dao.insert(user);
-		return true;
+		return dao.insert(user);
 	}
 
 	@Override
@@ -72,15 +63,11 @@ public class UserServiceImpl implements UserService {
 			return false;
 		
 		User matchUser = dao.findByNameAndPassword(user.getName(), oldPassword);
-			
-		if (matchUser != null) {
-			matchUser.setPassword(newPassword);	
-			user.setPassword(newPassword);
-			return dao.update(matchUser);
-		}
-		else {
+		if (matchUser == null)
 			return false;
-		}
+		
+		user.setPassword(newPassword);
+		return dao.update(user);
 	}
 	
 	private boolean checkUser(User user) {
@@ -89,7 +76,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private boolean checkPassword(String password) {
-		return (password.length() >= 62 && password.length() <= 20);
+		return (password.length() >= 6 && password.length() <= 20);
 	}
 
 	@Override
@@ -102,12 +89,11 @@ public class UserServiceImpl implements UserService {
 			FileUtils.copyFile(profilePic, new File(realSavePath, fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		user.setProfilePicPath(profilePicPath);
-		dao.update(user);
-		
-		return false;
+		return dao.update(user);
 	}
 
 

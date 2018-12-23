@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 
 import com.dao.UserDAO;
 import com.pojo.User;
@@ -130,14 +129,13 @@ public class UserDAOImpl implements UserDAO {
 	    	
 	    	// 查询数据库中 ID 相同的用户
 	    	query.select(root).where(builder.equal(root.get("id"), id));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameIdUser = q.getResultList();
+	    	List<User> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameIdUser.isEmpty() ? null : sameIdUser.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -164,14 +162,13 @@ public class UserDAOImpl implements UserDAO {
 	    	
 	    	// 查询数据库中名字相同的用户
 	    	query.select(root).where(builder.equal(root.get("name"), name));
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> sameNameUser = q.getResultList();
+	    	List<User> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return sameNameUser.isEmpty() ? null : sameNameUser.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -201,13 +198,13 @@ public class UserDAOImpl implements UserDAO {
 	    		builder.equal(root.get("name"), name), 
 	    		builder.equal(root.get("password"), password)
 	    	)); 
-	    	List<User> matchUsers = session.createQuery(query).getResultList();
+	    	List<User> resultList = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();
 	    	
 	    	session.close();
-	    	return matchUsers.isEmpty() ? null : matchUsers.get(0);
+	    	return resultList.isEmpty() ? null : resultList.get(0);
 	    } catch (HibernateException e) {
 	         if (transaction != null) {
 	        	 transaction.rollback();
@@ -234,8 +231,7 @@ public class UserDAOImpl implements UserDAO {
 	    	
 	    	// 查询数据库中全部用户
 	    	query.select(root);
-	    	Query<User> q = session.createQuery(query);
-	    	List<User> allUsers = q.getResultList();
+	    	List<User> allUsers = session.createQuery(query).getResultList();
 	        
 	        // 提交事务
 	    	transaction.commit();

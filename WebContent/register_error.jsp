@@ -4,9 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>RegisterError</title>
+        <title>注册失败</title>
     </head>
 	<body>
-		Register Error
+		<p>注册失败</p>
+		<a href="index.jsp">返回首页</a>
 	</body>
 </html>

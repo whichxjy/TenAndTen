@@ -16,14 +16,8 @@ public class StartExamAction extends ActionSupport {
 	}
 	
 	public String execute() {
-		try {						
-			// 设置显示的问题
-			setQuestionItems(qService.getAllQuestionItems());
-			return SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ERROR;
-		}
+		setQuestionItems(qService.getAllQuestionItems());
+		return SUCCESS;
 	}
 
 	public List<QuestionItem> getQuestionItems() {
@@ -34,6 +28,4 @@ public class StartExamAction extends ActionSupport {
 		this.questionItems = questionItems;
 	}
 
-
-	
 }

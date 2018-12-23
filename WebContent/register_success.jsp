@@ -4,9 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>RegisterSuccess</title>
+        <title>注册成功</title>
     </head>
 	<body>
-		Register Success!
+		<p>注册成功！</p>
+		<a href="index.jsp">返回首页</a>
 	</body>
 </html>
