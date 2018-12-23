@@ -5,7 +5,6 @@ import java.util.List;
 import com.dao.GradeDAO;
 import com.dao.impl.GradeDAOImpl;
 import com.pojo.Grade;
-import com.pojo.User;
 import com.service.GradeService;
 
 public class GradeServiceImpl implements GradeService {
@@ -28,13 +27,13 @@ public class GradeServiceImpl implements GradeService {
     }
 	
 	@Override
-	public boolean addGrade(User user, int score) {
-		return dao.insert(new Grade(user.getName(), score));
+	public boolean addGrade(String userName, Integer score) {
+		return dao.insert(new Grade(userName, score));
 	}
 
 	@Override
-	public boolean updateGrade(User user, int score) {
-		Grade grade = dao.findByUserName(user.getName());
+	public boolean updateGrade(String userName, Integer score) {
+		Grade grade = dao.findByUserName(userName);
 		if (grade == null)
 			return false;
 		
@@ -43,9 +42,9 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public int queryGrade(User user) {
-		Grade grade = dao.findByUserName(user.getName());
-		return grade == null ? -1 : grade.getScore();	
+	public Integer queryGrade(String userName) {
+		Grade grade = dao.findByUserName(userName);
+		return grade == null ? null : grade.getScore();	
 	}
 
 	@Override

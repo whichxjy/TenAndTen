@@ -1,7 +1,5 @@
 package com.action;
 
-import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.pojo.User;
 import com.service.UserService;
@@ -15,15 +13,8 @@ public class UserLoginAction extends ActionSupport {
 		uService = UserServiceImpl.getService();
 	}
 	
-	public String execute() {
-		// µÇÂ¼		
-		if (uService.login(user)) {
-			ServletActionContext.getRequest().getSession().setAttribute("user", user);
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+	public String execute() {		
+		return uService.login(user) ? SUCCESS : ERROR;
 	}
 	
 	public User getUser() {

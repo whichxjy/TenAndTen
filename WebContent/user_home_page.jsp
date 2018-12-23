@@ -8,6 +8,8 @@
     </head>
 	<body>
 		<h1>主页</h1>
+		<img src="<s:property value="#session.user.profilePicPath"/>"  height=50px width=50px/>
+		<a href="user_change_profile.jsp">更改头像</a>
 		名字：<s:property value="#session.user.name"/> <br/>
 		<form action="startExam" method="post">
 	   		<input type="submit" value="进入考试页面"/>		

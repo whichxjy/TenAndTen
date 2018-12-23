@@ -14,7 +14,8 @@
 	    	<input type="submit" value="Login"/>		
 	    </s:form>
 	   
-	   <a href="user_register.jsp">用户注册</a>
-	   <a href="manager_login.jsp">管理员登录</a>
+		<a href="user_register.jsp">用户注册</a>
+		<a href="manager_login.jsp">管理员登录</a>
+ 
 	</body>
 </html>

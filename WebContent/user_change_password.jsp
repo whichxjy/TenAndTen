@@ -13,6 +13,13 @@
 			确认新密码：<input type="password" name="confirmPassword"/><br/>
 			<input type="submit" value="修改密码"/>	
 	   </form>
+	   
+	   		<s:form action="uploadPicture" enctype="multipart/form-data">
+		   	<s:file name="profilePicture" label="选择文件"/> <br/>
+		   	<input type="submit" value="提交"/>	
+		</s:form>
+		
+				<img src="<s:property value="files"/>"/>
 	
 	</body>
 </html>

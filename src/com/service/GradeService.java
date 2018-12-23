@@ -3,17 +3,16 @@ package com.service;
 import java.util.List;
 
 import com.pojo.Grade;
-import com.pojo.User;
 
 public interface GradeService {
 	// 添加成绩
-	public boolean addGrade(User user, int score);
+	public boolean addGrade(String userName, Integer score);
 	
 	// 更新成绩
-	public boolean updateGrade(User user, int score);
+	public boolean updateGrade(String userName, Integer score);
 	
 	// 查询成绩
-	public int queryGrade(User user);
+	public Integer queryGrade(String userName);
 	
 	// 获取所有成绩
 	public List<Grade> getAllGrades();

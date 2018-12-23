@@ -15,6 +15,7 @@
 		<!-- 用户注册 -->
         <action name="userRegister" class="com.action.UserRegisterAction" method="execute">
             <result name="success">/register_success.jsp</result>
+            <param name="profilePath">/upload</param>
             <result name="error">/register_error.jsp</result>
         </action>
         
@@ -44,6 +45,15 @@
         
         <!-- 修改成绩 -->
         <action name="userChangePassword" class="com.action.UserChangePasswordAction" method="execute">
+            <result name="success">/user_home_page.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+		<!-- 上传头像 -->
+        <action name="uploadPicture" class="com.action.UploadPictureAction" method="execute">
+        	<param name="savePath">/upload</param>
+        	<param name="allowTypes">image/png,image/gif,image/jpeg</param>
+        	<result name="input">/user_change_profile.jsp</result>
             <result name="success">/user_home_page.jsp</result>
             <result name="error">/error.jsp</result>
         </action>

@@ -8,7 +8,7 @@ import com.service.GradeService;
 import com.service.impl.GradeServiceImpl;
 
 public class UserQueryGradeAction extends ActionSupport {
-	private int score;
+	private Integer score;
 	private GradeService gService;
 	
 	public UserQueryGradeAction() {
@@ -17,15 +17,15 @@ public class UserQueryGradeAction extends ActionSupport {
 
 	public String execute() {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");	
-		setScore(gService.queryGrade(user));
-		return score == -1 ? ERROR : SUCCESS;
+		setScore(gService.queryGrade(user.getName()));
+		return score == null ? ERROR : SUCCESS;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 	
