@@ -7,11 +7,12 @@
         <title>注册</title>
     </head>
 	<body>
-		<form action="userRegister" method="post">
-			用户名:：<input type="text" name="user.name"/><br/>
+		<h1>用户注册</h1>
+		<s:form action="userRegister" method="post">
+			用户名:<input type="text" name="user.name"/><br/>
 			密码：<input type="password" name="user.password"/><br/>
 	      <input type="submit" value="注册"/>
-	   </form>
+	   </s:form>
 	   <a href="index.jsp">返回首页</a>
 	</body>
 </html>

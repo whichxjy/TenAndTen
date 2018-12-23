@@ -14,10 +14,9 @@ public class Grade {
 		setScore(score);
 	}
 	
-	public Grade(int id, String userName, int score) {
+	public Grade(int id, String userName, int score) {	
+		this(userName, score);
 		setId(id);
-		setUserName(userName);
-		setScore(score);
 	}
 	
 	public int getId() {
@@ -26,6 +25,7 @@ public class Grade {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getUserName() {
 		return userName;
 	}

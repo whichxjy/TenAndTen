@@ -7,7 +7,7 @@
         <title>成绩表</title>
     </head>
 	<body>
-	
+		<h1>成绩表</h1>
 		<s:iterator value="grades" var="grade" status="status">
 			用户：<s:property value="#grade.userName"/> <br/>
 			成绩：<s:property value="#grade.score"/> <br/> <br/>

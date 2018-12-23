@@ -9,20 +9,24 @@ public class User {
 	public User() {
 		setName(null);
 		setPassword(null);
-		setProfilePicPath("-");
-	}
-	
-	public User(String userName, String userPassword) {
-		setName(userName);
-		setPassword(userPassword);
-		setProfilePicPath("-");
+		setProfilePicPath(null);
 	}
 	
 	public User(int id, String userName, String userPassword) {
-		this.id = id;
-		name = userName;
-		password = userPassword;
-		setProfilePicPath("-");
+		setId(id);
+		setName(userName);
+		setPassword(userPassword);
+	}
+	
+	public User(String userName, String userPassword, String profilePicPath) {
+		setName(userName);
+		setPassword(userPassword);
+		setProfilePicPath(profilePicPath);
+	}
+	
+	public User(int id, String userName, String userPassword, String profilePicPath) {
+		this(userName, userPassword, profilePicPath);
+		setId(id);
 	}
 	
 	public int getId() {

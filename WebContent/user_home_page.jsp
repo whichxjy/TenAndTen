@@ -14,13 +14,13 @@
 		<a href="user_change_password.jsp">修改密码</a>
 		<a href="userQuit.action">退出</a>
 		
-		<form action="startExam" method="post">
+		<s:form action="startExam" method="post">
 	   		<input type="submit" value="开始考试"/>	
-		</form>
+		</s:form>
 		
-		<form action="queryGrade" method="post">
+		<s:form action="queryGrade" method="post">
 	   		<input type="submit" value="查询成绩"/>		
-		</form>
+		</s:form>
 	
 	</body>
 </html>

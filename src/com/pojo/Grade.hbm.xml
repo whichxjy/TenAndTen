@@ -6,7 +6,7 @@
 <hibernate-mapping>
    <class name="com.pojo.Grade" table="grades">
       <meta attribute="class-description">
-         This class contains the user detail. 
+         This class contains the grade detail. 
       </meta>
       
       <id name="id" type="int" column="grade_id">

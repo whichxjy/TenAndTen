@@ -8,11 +8,11 @@
     </head>
 	<body>
 		<h1>管理员登录</h1>
-	   <form action="managerLogin" method="post">
+	   <s:form action="managerLogin" method="post">
 	      	用户名：<input type="text" name="manager.name"/><br/>
 	      	密码：<input type="password" name="manager.password"/><br/>
 	      <input type="submit" value="登录"/>		
-	   </form>
+	   </s:form>
 	   <a href="index.jsp">返回首页</a>
 	</body>
 </html>
