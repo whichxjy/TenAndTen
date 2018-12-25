@@ -33,6 +33,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean login(User user) {
+		if (!checkUser(user))
+			return false;
+		
 		// 查看数据库中是否有姓名和密码都匹配的用户
 		User matchUser = dao.findByNameAndPassword(user.getName(), user.getPassword());
 		if (matchUser == null)

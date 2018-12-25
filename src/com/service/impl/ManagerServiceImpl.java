@@ -28,12 +28,20 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	@Override
 	public boolean login(Manager manager) {
+		if (!check(manager))
+			return false;
+		
 		Manager matchManager = dao.findByNameAndPassword(manager.getName(), manager.getPassword());
 		if (matchManager == null)
 			return false;
 		
 		ServletActionContext.getRequest().getSession().setAttribute("manager", matchManager);
 		return true;
+	}
+	
+	public boolean check(Manager manager) {
+		return (manager.getName().length() >= 4 && manager.getName().length() <= 20 
+				&& manager.getPassword().length() >= 6 && manager.getPassword().length() <= 20);
 	}
 
 }

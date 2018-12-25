@@ -7,6 +7,7 @@
         <title>Manager Home Page</title>
     </head>
 	<body>
+		<h1>主页</h1>
 		<p>欢迎管理员 <s:property value="#session.manager.name"/></p>
 		
 		<a href="question_list.jsp">

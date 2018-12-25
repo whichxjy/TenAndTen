@@ -7,7 +7,7 @@
         <title>result</title>
     </head>
 	<body>
-		<p>您的成绩为：<s:property value="score"/></p> <br/>
+		<p>您的成绩为：<s:property value="score"/>分</p> <br/>
 		<a href="user_home_page.jsp">返回主页</a>		
 	</body>
 </html>

@@ -9,7 +9,7 @@
 	<body>
 		<h1>主页</h1>
 		<p>欢迎  <s:property value="#session.user.name"/></p>
-		<img src="<s:property value="#session.user.profilePicPath"/>" height=50px width=50px/> <br/>
+		<img src="<s:property value="#session.user.profilePicPath"/>" height=60px width=60px/> <br/>
 		<a href="user_change_profile.jsp">更改头像</a>
 		<a href="user_change_password.jsp">修改密码</a>
 		<a href="userQuit.action">退出</a>

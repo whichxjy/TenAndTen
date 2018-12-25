@@ -1,56 +1,25 @@
 package com.pojo;
 
-public class User {
-	private int id;
-	private String name;
-	private String password;
+public class User extends Person{
 	private String profilePicPath;
 	
 	public User() {
-		setName(null);
-		setPassword(null);
+		super();
 		setProfilePicPath(null);
 	}
 	
 	public User(int id, String userName, String userPassword) {
-		setId(id);
-		setName(userName);
-		setPassword(userPassword);
+		super(id, userName, userPassword);
 	}
 	
 	public User(String userName, String userPassword, String profilePicPath) {
-		setName(userName);
-		setPassword(userPassword);
+		super(userName, userPassword);
 		setProfilePicPath(profilePicPath);
 	}
 	
 	public User(int id, String userName, String userPassword, String profilePicPath) {
 		this(userName, userPassword, profilePicPath);
 		setId(id);
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getProfilePicPath() {

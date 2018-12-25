@@ -7,7 +7,9 @@
         <title>Grade</title>
     </head>
 	<body>
-		名字：<s:property value="#session.user.name"/> <br/>
-		成绩：<s:property value="score"/>
+		<h1>成绩查询</h1>
+		用户名：<s:property value="#session.user.name"/> <br/>
+		成绩：<s:property value="score"/> <br/>
+		<a href="user_home_page.jsp">返回主页</a>
 	</body>
 </html>

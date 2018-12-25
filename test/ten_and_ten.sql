@@ -27,7 +27,7 @@ CREATE TABLE `grades` (
   `user_name` varchar(20) NOT NULL,
   `score` int(11) NOT NULL,
   PRIMARY KEY (`grade_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `question_items` (
   `question` varchar(200) NOT NULL,
   `right_answer` varchar(200) NOT NULL,
   PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `question_items` (
 
 LOCK TABLES `question_items` WRITE;
 /*!40000 ALTER TABLE `question_items` DISABLE KEYS */;
-INSERT INTO `question_items` VALUES (1,'What\'s the meaing of life?','42'),(2,'Who lives in a pineapple under the sea?','SpongeBob SquarePants'),(3,'What continent has the smallest population?','Australia');
+INSERT INTO `question_items` VALUES (1,'What\'s the meaing of life?','42'),(2,'Who lives in a pineapple under the sea?','SpongeBob SquarePants'),(3,'What is the hottest planet in our solar system? ','Venus');
 /*!40000 ALTER TABLE `question_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +102,7 @@ CREATE TABLE `users` (
   `user_password` varchar(20) NOT NULL,
   `profilePicPath` varchar(200) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,4 +123,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-24  2:54:03
+-- Dump completed on 2018-12-26  0:42:35

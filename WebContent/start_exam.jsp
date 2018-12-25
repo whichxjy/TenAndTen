@@ -13,7 +13,7 @@
 		<s:form action="submitAnswers" method="post">
 			<s:iterator value="questionItems" var='questionItem' status="status">
 				<s:property value="#status.count"/>. <s:property value="#questionItem.question"/><br/>
-				<input type="text" name="userAnswers[${status.index}]" size="25"/><br/>
+				<input type="text" name="userAnswers[${status.index}]" size="25"/><br/><br/>
 			</s:iterator>
 			
 			<input type="submit" value="提交答案"/>
