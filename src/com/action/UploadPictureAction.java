@@ -25,14 +25,13 @@ public class UploadPictureAction extends ActionSupport {
 			if (type.equals(profilePicContentType))
 				return;
 		}
-		addFieldError("user_change_profile", "ÄúÉÏ´«µÄÍ¼Æ¬ÀàĞÍ²»ÕıÈ·");
+		addFieldError("user_change_profile", "æ‚¨ä¸Šä¼ çš„å›¾ç‰‡ç±»å‹ä¸æ­£ç¡®");
 	}
 	
 	@Override
 	public String execute() {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		uService.changeProfilePic(user, profilePic, profilePicContentType, savePath);
-		return SUCCESS;
+		return uService.changeProfilePic(user, profilePic, profilePicContentType, savePath) ? SUCCESS : ERROR;
 	}
 		
 	public String getSavePath() {
